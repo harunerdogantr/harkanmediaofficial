@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function ABTest() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>A/B Testi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Veriye dayalı A/B testleriyle dönüşüm oranlarınızı artırın. İstatistiksel anlamlılık garantisiyle güvenilir test sonuçları, sürekli iyileştirme döngüsü." />
-        <meta name="keywords" content="A/B testi, split test, dönüşüm optimizasyonu, CRO, landing page testi, İstanbul" />
-        <meta property="og:title" content="A/B Testi | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/ab-testi" />
-      </Helmet>
+      <SEO
+        title="A/B Testi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Veriye dayalı A/B testleriyle dönüşüm oranlarınızı artırın. İstatistiksel anlamlılık garantisiyle güvenilir test sonuçları, sürekli iyileştirme döngüsü."
+        keywords="A/B testi, split test, dönüşüm optimizasyonu, CRO, landing page testi, İstanbul"
+        path="/ab-testi"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

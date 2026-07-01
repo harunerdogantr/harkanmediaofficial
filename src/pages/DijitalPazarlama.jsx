@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function DijitalPazarlama() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Dijital Pazarlama - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="SEO, sosyal medya, içerik ve ücretli reklam kanallarını entegre eden 360° dijital pazarlama stratejisiyle markanızı büyütün. Veriye dayalı, ölçümlenebilir sonuçlar." />
-        <meta name="keywords" content="dijital pazarlama, 360 dijital strateji, içerik pazarlama, inbound marketing, performans pazarlama, İstanbul" />
-        <meta property="og:title" content="Dijital Pazarlama | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/dijital-pazarlama" />
-      </Helmet>
+      <SEO
+        title="Dijital Pazarlama - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="SEO, sosyal medya, içerik ve ücretli reklam kanallarını entegre eden 360° dijital pazarlama stratejisiyle markanızı büyütün. Veriye dayalı, ölçümlenebilir sonuçlar."
+        keywords="dijital pazarlama, 360 dijital strateji, içerik pazarlama, inbound marketing, performans pazarlama, İstanbul"
+        path="/dijital-pazarlama"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

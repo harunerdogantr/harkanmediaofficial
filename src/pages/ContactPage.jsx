@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
+import SEO from '../components/SEO';
 import { contactSchema } from '../schemas/contactSchema';
 import { CONTACT } from '../config/contact';
 import { useInView } from '../hooks/useInView';
@@ -112,15 +112,12 @@ export default function ContactPage() {
 
   return (
     <>
-      <Helmet>
-        <title>İletişim - Harkan Media | Dijital Pazarlama ve Danışmanlık</title>
-        <meta name="description" content="Harkan Media ile iletişime geçin. Dijital pazarlama, SEO, Google Ads ve yazılım danışmanlığı hizmetlerimiz hakkında bilgi almak için bize ulaşın." />
-        <meta name="keywords" content="iletişim, Harkan Media, dijital pazarlama, SEO, Google Ads, danışmanlık" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="İletişim | Harkan Media" />
-        <meta property="og:description" content="Harkan Media ile iletişime geçin." />
-        <link rel="canonical" href="https://harkanmedia.com/iletisim" />
-      </Helmet>
+      <SEO
+        title="İletişim - Harkan Media | Dijital Pazarlama ve Danışmanlık"
+        description="Harkan Media ile iletişime geçin. Dijital pazarlama, SEO, Google Ads ve yazılım danışmanlığı hizmetlerimiz hakkında bilgi almak için bize ulaşın."
+        keywords="iletişim, Harkan Media, dijital pazarlama, SEO, Google Ads, danışmanlık"
+        path="/iletisim"
+      />
 
       {/* ── PAGE HEADER ── */}
       <section className="cp-hero">

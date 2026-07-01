@@ -1,15 +1,15 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { CONTACT } from '../config/contact';
 import '../styles/legal-page.css';
 
 export default function CerezPolitikasi() {
   return (
     <>
-      <Helmet>
-        <title>Çerez Politikası — Harkan Media</title>
-        <meta name="description" content="Harkan Media çerez politikası. Web sitemizde kullanılan çerezler ve yönetim seçenekleri hakkında bilgi edinin." />
-        <link rel="canonical" href="https://harkanmedia.com/cerez-politikasi" />
-      </Helmet>
+      <SEO
+        title="Çerez Politikası — Harkan Media"
+        description="Harkan Media çerez politikası. Web sitemizde kullanılan çerezler ve yönetim seçenekleri hakkında bilgi edinin."
+        path="/cerez-politikasi"
+      />
 
       <section className="lp-hero">
         <span className="lp-eyebrow">Yasal</span>

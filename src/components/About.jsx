@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from './SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -41,15 +41,12 @@ export default function About() {
 
   return (
     <>
-      <Helmet>
-        <title>Hakkımızda - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Harkan Media olarak 10 yılı aşkın deneyimimizle dijital pazarlama, yazılım danışmanlığı ve veri analitiği alanlarında işletmenizi bir adım öne taşıyoruz." />
-        <meta name="keywords" content="Harkan Media, hakkımızda, dijital pazarlama ajansı, yazılım danışmanlık, İstanbul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Hakkımızda | Harkan Media" />
-        <meta property="og:description" content="Harkan Media hakkında bilgi edinin. 10+ yıl deneyim, uzman ekip ve 360° dijital pazarlama yaklaşımı." />
-        <link rel="canonical" href="https://harkanmedia.com/hakkimizda" />
-      </Helmet>
+      <SEO
+        title="Hakkımızda - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Harkan Media olarak 10 yılı aşkın deneyimimizle dijital pazarlama, yazılım danışmanlığı ve veri analitiği alanlarında işletmenizi bir adım öne taşıyoruz."
+        keywords="Harkan Media, hakkımızda, dijital pazarlama ajansı, yazılım danışmanlık, İstanbul"
+        path="/hakkimizda"
+      />
 
       {/* HERO */}
       <section className="pl-hero">

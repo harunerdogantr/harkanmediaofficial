@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function InstagramAds() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Instagram Reklamları - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="Instagram Feed, Story ve Reels reklamlarıyla hedef kitlenize ulaşın. Profesyonel kreatif üretimi ve dönüşüm odaklı kampanya yönetimiyle markanızı büyütün." />
-        <meta name="keywords" content="Instagram reklamları, Instagram Ads, Story reklamı, Reels reklam, Meta reklamları, İstanbul" />
-        <meta property="og:title" content="Instagram Reklamları | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/instagram-reklam-optimizasyonu" />
-      </Helmet>
+      <SEO
+        title="Instagram Reklamları - Harkan Media | Dijital Pazarlama"
+        description="Instagram Feed, Story ve Reels reklamlarıyla hedef kitlenize ulaşın. Profesyonel kreatif üretimi ve dönüşüm odaklı kampanya yönetimiyle markanızı büyütün."
+        keywords="Instagram reklamları, Instagram Ads, Story reklamı, Reels reklam, Meta reklamları, İstanbul"
+        path="/instagram-reklam-optimizasyonu"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function DataModeling() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Veri Modelleme - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Veri ambarı tasarımı, analitik model geliştirme ve görselleştirme hizmetleriyle organizasyonunuzun veri olgunluğunu artırın. Veriden değer üretin." />
-        <meta name="keywords" content="veri modelleme, data warehouse, ETL, analitik modeller, veri görselleştirme, Power BI, İstanbul" />
-        <meta property="og:title" content="Veri Modelleme | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/veri-modelleme" />
-      </Helmet>
+      <SEO
+        title="Veri Modelleme - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Veri ambarı tasarımı, analitik model geliştirme ve görselleştirme hizmetleriyle organizasyonunuzun veri olgunluğunu artırın. Veriden değer üretin."
+        keywords="veri modelleme, data warehouse, ETL, analitik modeller, veri görselleştirme, Power BI, İstanbul"
+        path="/veri-modelleme"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

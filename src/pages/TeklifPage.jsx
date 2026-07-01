@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
+import SEO from '../components/SEO';
 import { teklifStepSchemas } from '../schemas/teklifSchema';
 import { CONTACT } from '../config/contact';
 import { useInView } from '../hooks/useInView';
@@ -158,11 +158,11 @@ export default function TeklifPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Teklif İste - Harkan Media | Dijital Pazarlama ve Danışmanlık</title>
-        <meta name="description" content="Harkan Media'dan ücretsiz teklif alın. Hizmet seçimi, bütçe aralığı ve iletişim bilgilerinizi paylaşın, 24 saat içinde dönelim." />
-        <link rel="canonical" href="https://harkanmedia.com/teklif" />
-      </Helmet>
+      <SEO
+        title="Teklif İste - Harkan Media | Dijital Pazarlama ve Danışmanlık"
+        description="Harkan Media'dan ücretsiz teklif alın. Hizmet seçimi, bütçe aralığı ve iletişim bilgilerinizi paylaşın, 24 saat içinde dönelim."
+        path="/teklif"
+      />
 
       {/* HERO */}
       <section className="tp-hero">

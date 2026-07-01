@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function GoogleAds() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Google Ads Optimizasyonu - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="Google Ads reklamlarınızı profesyonel olarak yönetiyoruz. Arama, görüntülü ve video reklamlarıyla hedef kitlenize ulaşın, ROI'nizi maksimize edin." />
-        <meta name="keywords" content="Google Ads, Google reklamları, PPC, arama reklamları, görüntülü reklamlar, Google Ads optimizasyonu, İstanbul" />
-        <meta property="og:title" content="Google Ads Optimizasyonu | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/google-ads-optimizasyonu" />
-      </Helmet>
+      <SEO
+        title="Google Ads Optimizasyonu - Harkan Media | Dijital Pazarlama"
+        description="Google Ads reklamlarınızı profesyonel olarak yönetiyoruz. Arama, görüntülü ve video reklamlarıyla hedef kitlenize ulaşın, ROI'nizi maksimize edin."
+        keywords="Google Ads, Google reklamları, PPC, arama reklamları, görüntülü reklamlar, Google Ads optimizasyonu, İstanbul"
+        path="/google-ads-optimizasyonu"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

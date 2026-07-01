@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -68,15 +68,12 @@ export default function DomainHosting() {
 
   return (
     <>
-      <Helmet>
-        <title>Domain & Hosting Yönetimi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="%99.9 uptime garantisi, SSD depolama ve 7/24 teknik destek ile domain ve hosting hizmetlerinizi profesyonel olarak yönetiyoruz." />
-        <meta name="keywords" content="domain yönetimi, hosting hizmetleri, VPS, SSL sertifikası, web hosting, İstanbul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Domain & Hosting Yönetimi | Harkan Media" />
-        <meta property="og:description" content="Güvenli ve hızlı hosting çözümleri ile dijital altyapınızı güçlendirin." />
-        <link rel="canonical" href="https://harkanmedia.com/domain-hosting" />
-      </Helmet>
+      <SEO
+        title="Domain & Hosting Yönetimi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="%99.9 uptime garantisi, SSD depolama ve 7/24 teknik destek ile domain ve hosting hizmetlerinizi profesyonel olarak yönetiyoruz."
+        keywords="domain yönetimi, hosting hizmetleri, VPS, SSL sertifikası, web hosting, İstanbul"
+        path="/domain-hosting"
+      />
 
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true">

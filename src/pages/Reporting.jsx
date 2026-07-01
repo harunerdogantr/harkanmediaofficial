@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -68,15 +68,12 @@ export default function Reporting() {
 
   return (
     <>
-      <Helmet>
-        <title>Raporlama - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Gerçek zamanlı izleme, özelleştirilmiş KPI raporları ve detaylı analiz ile işletmenizin performansını net olarak görün. Harkan Media raporlama hizmetleri." />
-        <meta name="keywords" content="dijital raporlama, KPI dashboard, performans raporu, veri görselleştirme, gerçek zamanlı analitik, İstanbul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Raporlama | Harkan Media" />
-        <meta property="og:description" content="Özelleştirilmiş raporlama çözümleri ile verilerinizi anlayın ve stratejik kararlar alın." />
-        <link rel="canonical" href="https://harkanmedia.com/raporlama" />
-      </Helmet>
+      <SEO
+        title="Raporlama - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Gerçek zamanlı izleme, özelleştirilmiş KPI raporları ve detaylı analiz ile işletmenizin performansını net olarak görün. Harkan Media raporlama hizmetleri."
+        keywords="dijital raporlama, KPI dashboard, performans raporu, veri görselleştirme, gerçek zamanlı analitik, İstanbul"
+        path="/raporlama"
+      />
 
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true">

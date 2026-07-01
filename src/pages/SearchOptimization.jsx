@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function SearchOptimization() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Arama Motoru Optimizasyonu (SEO) - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="Teknik SEO, içerik stratejisi ve link building ile arama motorlarında üst sıralara çıkın. Organik trafiğinizi artıran kanıtlanmış SEO hizmetleri." />
-        <meta name="keywords" content="SEO, arama motoru optimizasyonu, teknik SEO, içerik SEO, link building, Google sıralama, İstanbul" />
-        <meta property="og:title" content="Arama Optimizasyonu | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/arama-optimizasyonu" />
-      </Helmet>
+      <SEO
+        title="Arama Motoru Optimizasyonu (SEO) - Harkan Media | Dijital Pazarlama"
+        description="Teknik SEO, içerik stratejisi ve link building ile arama motorlarında üst sıralara çıkın. Organik trafiğinizi artıran kanıtlanmış SEO hizmetleri."
+        keywords="SEO, arama motoru optimizasyonu, teknik SEO, içerik SEO, link building, Google sıralama, İstanbul"
+        path="/arama-optimizasyonu"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

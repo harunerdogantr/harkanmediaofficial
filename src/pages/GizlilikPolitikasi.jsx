@@ -1,15 +1,15 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { CONTACT } from '../config/contact';
 import '../styles/legal-page.css';
 
 export default function GizlilikPolitikasi() {
   return (
     <>
-      <Helmet>
-        <title>Gizlilik Politikası — Harkan Media</title>
-        <meta name="description" content="Harkan Media gizlilik politikası. Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin." />
-        <link rel="canonical" href="https://harkanmedia.com/gizlilik-politikasi" />
-      </Helmet>
+      <SEO
+        title="Gizlilik Politikası — Harkan Media"
+        description="Harkan Media gizlilik politikası. Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin."
+        path="/gizlilik-politikasi"
+      />
 
       <section className="lp-hero">
         <span className="lp-eyebrow">Yasal</span>

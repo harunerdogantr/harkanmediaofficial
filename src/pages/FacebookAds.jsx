@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function FacebookAds() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Facebook Reklamları - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="Facebook ve Instagram reklamlarınızı profesyonel olarak yönetiyoruz. Hedef kitle analizi, dönüşüm optimizasyonu ve ROI odaklı kampanyalarla markanızı büyütün." />
-        <meta name="keywords" content="Facebook reklamları, Facebook Ads, Meta reklam, sosyal medya reklamı, dönüşüm optimizasyonu, İstanbul" />
-        <meta property="og:title" content="Facebook Reklamları | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/facebook-reklam-optimizasyonu" />
-      </Helmet>
+      <SEO
+        title="Facebook Reklamları - Harkan Media | Dijital Pazarlama"
+        description="Facebook ve Instagram reklamlarınızı profesyonel olarak yönetiyoruz. Hedef kitle analizi, dönüşüm optimizasyonu ve ROI odaklı kampanyalarla markanızı büyütün."
+        keywords="Facebook reklamları, Facebook Ads, Meta reklam, sosyal medya reklamı, dönüşüm optimizasyonu, İstanbul"
+        path="/facebook-reklam-optimizasyonu"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

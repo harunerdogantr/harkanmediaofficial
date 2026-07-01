@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function IysCozumleri() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>İYS Çözümleri - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="KVKK ve İYS uyumlu izin yönetimi, CRM entegrasyonu ve uyumluluk raporlamasıyla yasal pazarlama altyapınızı güvence altına alın." />
-        <meta name="keywords" content="İYS çözümleri, ileti yönetim sistemi, KVKK uyum, izin yönetimi, SMS izni, e-posta izni, İstanbul" />
-        <meta property="og:title" content="İYS Çözümleri | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/iys-cozumleri" />
-      </Helmet>
+      <SEO
+        title="İYS Çözümleri - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="KVKK ve İYS uyumlu izin yönetimi, CRM entegrasyonu ve uyumluluk raporlamasıyla yasal pazarlama altyapınızı güvence altına alın."
+        keywords="İYS çözümleri, ileti yönetim sistemi, KVKK uyum, izin yönetimi, SMS izni, e-posta izni, İstanbul"
+        path="/iys-cozumleri"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -30,15 +30,12 @@ export default function Partners() {
 
   return (
     <>
-      <Helmet>
-        <title>Partnerlerimiz - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Harkan Media; Google Partner ve Facebook Business Partner statüleriyle müşterilerine en üst düzey dijital pazarlama hizmetleri sunmaktadır." />
-        <meta name="keywords" content="Google Partner, Facebook Business Partner, Harkan Media partnerleri, dijital pazarlama, İstanbul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Partnerlerimiz | Harkan Media" />
-        <meta property="og:description" content="Google ve Facebook iş ortaklıklarımızla size daha güçlü dijital pazarlama hizmetleri sunuyoruz." />
-        <link rel="canonical" href="https://harkanmedia.com/partnerlerimiz" />
-      </Helmet>
+      <SEO
+        title="Partnerlerimiz - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Harkan Media; Google Partner ve Facebook Business Partner statüleriyle müşterilerine en üst düzey dijital pazarlama hizmetleri sunmaktadır."
+        keywords="Google Partner, Facebook Business Partner, Harkan Media partnerleri, dijital pazarlama, İstanbul"
+        path="/partnerlerimiz"
+      />
 
       {/* HERO */}
       <section className="pl-hero">

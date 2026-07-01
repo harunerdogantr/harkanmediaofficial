@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function MobilAnalitik() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Mobil Analitiği - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Firebase, Mixpanel ve Amplitude entegrasyonu ile mobil uygulamanızı veriye dayalı yönetin. Kullanıcı takibi, funnel analizi ve retention stratejileri." />
-        <meta name="keywords" content="mobil analitik, Firebase Analytics, Mixpanel, uygulama analizi, retention analizi, funnel optimizasyonu, İstanbul" />
-        <meta property="og:title" content="Mobil Analitiği | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/mobil-analitik" />
-      </Helmet>
+      <SEO
+        title="Mobil Analitiği - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Firebase, Mixpanel ve Amplitude entegrasyonu ile mobil uygulamanızı veriye dayalı yönetin. Kullanıcı takibi, funnel analizi ve retention stratejileri."
+        keywords="mobil analitik, Firebase Analytics, Mixpanel, uygulama analizi, retention analizi, funnel optimizasyonu, İstanbul"
+        path="/mobil-analitik"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

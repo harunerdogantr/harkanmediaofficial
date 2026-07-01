@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function GoogleLocalSeo() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Google Local SEO - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="Google My Business optimizasyonu, yerel SEO ve itibar yönetimiyle bölgenizde 1. sıraya çıkın. Yakınımdaki aramalarda rakiplerinizin önüne geçin." />
-        <meta name="keywords" content="Google Local SEO, yerel SEO, Google My Business, yerel arama optimizasyonu, itibar yönetimi, İstanbul" />
-        <meta property="og:title" content="Google Local SEO | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/google-local-seo" />
-      </Helmet>
+      <SEO
+        title="Google Local SEO - Harkan Media | Dijital Pazarlama"
+        description="Google My Business optimizasyonu, yerel SEO ve itibar yönetimiyle bölgenizde 1. sıraya çıkın. Yakınımdaki aramalarda rakiplerinizin önüne geçin."
+        keywords="Google Local SEO, yerel SEO, Google My Business, yerel arama optimizasyonu, itibar yönetimi, İstanbul"
+        path="/google-local-seo"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

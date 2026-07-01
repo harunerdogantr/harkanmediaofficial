@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function LinkedInAds() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>LinkedIn Reklamları - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="LinkedIn reklamlarıyla B2B hedef kitlenize ulaşın. Karar vericilere yönelik Sponsored Content, Lead Gen Formları ve Message Ads ile kaliteli lead toplayın." />
-        <meta name="keywords" content="LinkedIn reklamları, LinkedIn Ads, B2B pazarlama, Lead Gen Formları, Sponsored Content, İstanbul" />
-        <meta property="og:title" content="LinkedIn Reklamları | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/linkedin-reklam-optimizasyonu" />
-      </Helmet>
+      <SEO
+        title="LinkedIn Reklamları - Harkan Media | Dijital Pazarlama"
+        description="LinkedIn reklamlarıyla B2B hedef kitlenize ulaşın. Karar vericilere yönelik Sponsored Content, Lead Gen Formları ve Message Ads ile kaliteli lead toplayın."
+        keywords="LinkedIn reklamları, LinkedIn Ads, B2B pazarlama, Lead Gen Formları, Sponsored Content, İstanbul"
+        path="/linkedin-reklam-optimizasyonu"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

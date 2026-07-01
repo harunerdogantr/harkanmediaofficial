@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -68,15 +68,12 @@ export default function DataAnalysis() {
 
   return (
     <>
-      <Helmet>
-        <title>Veri Analizi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="İleri düzey veri analizi ile işletmenizin performansını ölçün, tahminsel analizle geleceği öngörün. Harkan Media uzman ekibi ile veri odaklı kararlar alın." />
-        <meta name="keywords" content="veri analizi, tahminsel analiz, iş analitiği, makine öğrenmesi, KPI, İstanbul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Veri Analizi | Harkan Media" />
-        <meta property="og:description" content="Verilerden anlamlı içgörüler elde edin. İleri düzey veri analizi ve tahminsel modeller ile işletmenizi büyütün." />
-        <link rel="canonical" href="https://harkanmedia.com/veri-analizi" />
-      </Helmet>
+      <SEO
+        title="Veri Analizi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="İleri düzey veri analizi ile işletmenizin performansını ölçün, tahminsel analizle geleceği öngörün. Harkan Media uzman ekibi ile veri odaklı kararlar alın."
+        keywords="veri analizi, tahminsel analiz, iş analitiği, makine öğrenmesi, KPI, İstanbul"
+        path="/veri-analizi"
+      />
 
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true">

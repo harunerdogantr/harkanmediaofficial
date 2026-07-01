@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function WebAnalitik() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Web Analitiği - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="GA4 kurulum, kullanıcı davranış analizi ve dönüşüm takibiyle web sitenizin performansını derinlemesine anlayın. Veri odaklı büyüme için web analitiği hizmetleri." />
-        <meta name="keywords" content="web analitiği, Google Analytics 4, GA4, kullanıcı davranışı, dönüşüm takibi, GTM, İstanbul" />
-        <meta property="og:title" content="Web Analitiği | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/web-analitik" />
-      </Helmet>
+      <SEO
+        title="Web Analitiği - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="GA4 kurulum, kullanıcı davranış analizi ve dönüşüm takibiyle web sitenizin performansını derinlemesine anlayın. Veri odaklı büyüme için web analitiği hizmetleri."
+        keywords="web analitiği, Google Analytics 4, GA4, kullanıcı davranışı, dönüşüm takibi, GTM, İstanbul"
+        path="/web-analitik"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

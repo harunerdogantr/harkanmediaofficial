@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -27,14 +27,12 @@ export default function Calismalarimiz() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Çalışmalarımız - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Harkan Media'nın gerçekleştirdiği dijital pazarlama, SEO, reklam ve analitik projelerini inceleyin. Gerçek sonuçlar, ölçülmüş başarılar." />
-        <meta name="keywords" content="çalışmalarımız, referanslar, portföy, dijital pazarlama projeleri, başarı hikayeleri, İstanbul" />
-        <meta property="og:title" content="Çalışmalarımız | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/calismalarimiz" />
-      </Helmet>
+      <SEO
+        title="Çalışmalarımız - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Harkan Media'nın gerçekleştirdiği dijital pazarlama, SEO, reklam ve analitik projelerini inceleyin. Gerçek sonuçlar, ölçülmüş başarılar."
+        keywords="çalışmalarımız, referanslar, portföy, dijital pazarlama projeleri, başarı hikayeleri, İstanbul"
+        path="/calismalarimiz"
+      />
 
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>

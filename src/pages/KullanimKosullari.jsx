@@ -1,15 +1,15 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { CONTACT } from '../config/contact';
 import '../styles/legal-page.css';
 
 export default function KullanimKosullari() {
   return (
     <>
-      <Helmet>
-        <title>Kullanım Koşulları — Harkan Media</title>
-        <meta name="description" content="Harkan Media kullanım koşulları. Web sitemizi ve hizmetlerimizi kullanırken geçerli olan şartlar hakkında bilgi edinin." />
-        <link rel="canonical" href="https://harkanmedia.com/kullanim-kosullari" />
-      </Helmet>
+      <SEO
+        title="Kullanım Koşulları — Harkan Media"
+        description="Harkan Media kullanım koşulları. Web sitemizi ve hizmetlerimizi kullanırken geçerli olan şartlar hakkında bilgi edinin."
+        path="/kullanim-kosullari"
+      />
 
       <section className="lp-hero">
         <span className="lp-eyebrow">Yasal</span>

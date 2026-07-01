@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -68,15 +68,12 @@ export default function SoftwareConsulting() {
 
   return (
     <>
-      <Helmet>
-        <title>Yazılım Danışmanlığı - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık</title>
-        <meta name="description" content="Özel yazılım çözümleri, sistem entegrasyonu ve teknoloji danışmanlığı ile dijital dönüşümünüzü gerçekleştirin. Harkan Media uzman ekibiyle işletmenizi geleceğe taşıyın." />
-        <meta name="keywords" content="yazılım danışmanlığı, dijital dönüşüm, özel yazılım, sistem entegrasyonu, bulut çözümleri, İstanbul" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Yazılım Danışmanlığı | Harkan Media" />
-        <meta property="og:description" content="Dijital dönüşümünüzü birlikte gerçekleştiriyoruz. Özel yazılım ve teknoloji danışmanlığı hizmetleri." />
-        <link rel="canonical" href="https://harkanmedia.com/yazilim-danismanligi" />
-      </Helmet>
+      <SEO
+        title="Yazılım Danışmanlığı - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        description="Özel yazılım çözümleri, sistem entegrasyonu ve teknoloji danışmanlığı ile dijital dönüşümünüzü gerçekleştirin. Harkan Media uzman ekibiyle işletmenizi geleceğe taşıyın."
+        keywords="yazılım danışmanlığı, dijital dönüşüm, özel yazılım, sistem entegrasyonu, bulut çözümleri, İstanbul"
+        path="/yazilim-danismanligi"
+      />
 
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true">

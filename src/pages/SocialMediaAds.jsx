@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
@@ -43,14 +43,12 @@ export default function SocialMediaAds() {
   const [ctaRef, ctaVisible] = useInView(0.05, 200);
   return (
     <>
-      <Helmet>
-        <title>Sosyal Medya Reklamları - Harkan Media | Dijital Pazarlama</title>
-        <meta name="description" content="Facebook, Instagram, LinkedIn ve TikTok dahil tüm sosyal medya platformlarında profesyonel reklam yönetimi. Multi-platform strateji ile erişiminizi genişletin." />
-        <meta name="keywords" content="sosyal medya reklamları, Facebook Ads, Instagram Ads, TikTok reklamları, multi-platform reklam, İstanbul" />
-        <meta property="og:title" content="Sosyal Medya Reklamları | Harkan Media" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://harkanmedia.com/sosyal-medya-reklamlari" />
-      </Helmet>
+      <SEO
+        title="Sosyal Medya Reklamları - Harkan Media | Dijital Pazarlama"
+        description="Facebook, Instagram, LinkedIn ve TikTok dahil tüm sosyal medya platformlarında profesyonel reklam yönetimi. Multi-platform strateji ile erişiminizi genişletin."
+        keywords="sosyal medya reklamları, Facebook Ads, Instagram Ads, TikTok reklamları, multi-platform reklam, İstanbul"
+        path="/sosyal-medya-reklamlari"
+      />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
         <div ref={heroRef} className={`pl-hero-content${heroVisible ? ' pl-visible' : ''}`}>

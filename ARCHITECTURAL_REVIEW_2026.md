@@ -3,6 +3,10 @@
 Senior full-stack architectural review of the React/Vite marketing site, covering baseline architecture, SEO, form validation, and Core Web Vitals. Written to balance modern best practices against practical maintainability — flagging both under-engineering and over-engineering risks.
 
 > **Implementation status (2026-07-02):** All priority action items from Sections 1-4 have been implemented and verified via production build + dev-server smoke checks. Completed items are marked `[x]` below. See the note at the end of each section for what remains open.
+>
+> **Update (2026-07-02, later same day):** The site-wide `<SEO>` component rollout — previously the one open item from Section 1 — is now complete. All 27 routed pages (was: only Homepage + NotFound) use the shared component with consistent canonical URLs, OG/Twitter tags, and keywords.
+>
+> **Update (2026-07-02, final):** `Organization` JSON-LD structured data added to `index.html`. This closes out every item in Section 1 (SEO Optimization) — the section's priority recommendations are now fully implemented.
 
 ---
 
@@ -54,17 +58,17 @@ Flat type-based layout (`components/`, `pages/`, `hooks/`, `styles/`) is fine at
 - Heading hierarchy is actually solid: every page has exactly one `<h1>`.
 
 ### Recommendations (priority order)
-1. [x] **Build one `<SEO>` component** (`src/components/SEO.jsx`) taking `{title, description, path, image?}` props, owning the canonical domain, default OG image, and Twitter card tags in one place. **Done** — created and wired into `Homepage.jsx` (previously had no `<Helmet>` at all) and `NotFound.jsx`. *Not yet rolled out to the other ~30 pages, which still use their original hand-rolled `<Helmet>` blocks — see note below.*
+1. [x] **Build one `<SEO>` component** (`src/components/SEO.jsx`) taking `{title, description, path, image?}` props, owning the canonical domain, default OG image, and Twitter card tags in one place. **Done, and rolled out site-wide.** All 27 routed pages/components (`Homepage`, `NotFound`, `ContactPage`, `TeklifPage`, `About`, `Partners`, `Calismalarimiz`, all 14 service pages, and all 3 legal pages) now use `<SEO>` instead of hand-rolled `<Helmet>` blocks. Every page's original title, description, and keywords were preserved exactly; each now automatically gets consistent canonical URLs, OG tags, and Twitter card tags it was previously missing. Verified via production build (`npm run build`, 119 modules, no errors) and dev-server module/route checks on all 25 migrated files.
 2. [x] **Pick one canonical domain** (`harkanmedia.com`) and fix `index.html`, `robots.txt`, `sitemap.xml`, and the `App.jsx` global Helmet to match. **Done** — `robots.txt` and `sitemap.xml` now point at `harkanmedia.com`; the redundant global `<Helmet>` in `App.jsx` was deleted entirely (each page now owns its own tags).
 3. [x] **Regenerate `sitemap.xml`** with all 26 live routes (including `/iletisim`, `/teklif`) and real/current `lastmod` dates. **Done.**
 4. [x] **Add `<meta name="robots" content="noindex">` to `NotFound.jsx`.** **Done**, via the new `<SEO noindex>` prop.
-5. **Add one `Organization` JSON-LD block** in `index.html`. *(Still open — not implemented in this pass.)*
+5. [x] **Add one `Organization` JSON-LD block** in `index.html`. **Done** — added a `<script type="application/ld+json">` block before `</head>` with `name`, `url`, `logo`/`image`, `description`, a `PostalAddress` (İstanbul, TR), a `ContactPoint` (phone/email sourced from `src/config/contact.js`), and `sameAs` links to all 5 social profiles. Verified as valid, parseable JSON in the production build output (`dist/index.html`).
 6. [x] **Add `<main>` around routed content** in `App.jsx`. **Done.**
 7. Low priority: [x] favicon tag added (points at `harkan-logo.png`, see Section 3); [x] broken OG image references fixed (now point at the existing `harkan-logo.png` instead of the missing `og-image.jpg`/`twitter-image.jpg`); title-separator punctuation standardization *(still open, only applied to the 2 pages migrated to `<SEO>` so far)*.
 
 **Avoid**: don't reach for Next.js/SSG migration to solve this — that's a framework rewrite to fix meta-tag hygiene. Google renders CSR JS fine for a site this size; fix the concrete tag/canonical/sitemap bugs first and revisit SSR only if indexing data later shows a real problem.
 
-**Remaining work**: migrating the other ~30 pages' hand-rolled `<Helmet>` blocks to the shared `<SEO>` component, and the `Organization` JSON-LD block, are the two items from this section not yet done.
+**Remaining work**: none — every priority recommendation in this section is now implemented.
 
 ---
 
@@ -238,7 +242,7 @@ This preserves the exact current UX (submit-time-only validation, per-field erro
 ## 4. Summary: Recommended Action Order
 
 1. [x] Fix sitemap + canonical domain split (SEO, ~30 min, zero code risk) — **done**
-2. [x] Add `<SEO>` shared component + `noindex` on 404 (SEO, ~1 hr) — **done** (component built and applied to Homepage + NotFound; site-wide rollout to remaining pages still open)
+2. [x] Add `<SEO>` shared component + `noindex` on 404 (SEO, ~1 hr) — **done**, including the full site-wide rollout to all 27 routed pages/components
 3. [x] Introduce Zod schemas as shown above, wired into existing `validate()`/`validateStep()` — **done**
 4. [x] `React.lazy` all routes in `App.jsx` (~30 min, mechanical) — **done**
 5. [x] Add preconnect hints, delete unused logo file (~10 min) — **done** (logo repurposed as favicon/OG image instead of deleted, see Section 3)
@@ -247,8 +251,6 @@ This preserves the exact current UX (submit-time-only validation, per-field erro
 Everything above is scoped to fix a specific, evidenced problem — no new frameworks, no form libraries, no SSR migration, no build-tool overhaul. Real technical debt addressed, no speculative infrastructure added.
 
 ### What's left open after this implementation pass
-- Roll out the `<SEO>` component to the remaining ~30 pages (currently only Homepage and NotFound use it; the rest still have their original, individually-fine-but-inconsistent `<Helmet>` blocks).
-- `Organization` JSON-LD structured data in `index.html`.
 - Minimal unit tests for the new Zod schemas and an e2e smoke test per form (Contact, Teklif) — the schemas are now pure and easy to test, but no test files exist yet.
 - Shared UI primitives (`Button`, `Input`, `Card`) and the `Navbar.jsx` desktop/mobile nav-list duplication — both intentionally deferred as lower-value, larger-scope work.
 - A dedicated, properly compressed OG/social-preview image to replace the oversized 2.1 MB logo currently serving that role.
