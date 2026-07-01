@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
-import { validateName, validateEmail, validatePhone, validateCompany, validateWebsite, validateMessage } from '../utils/validators';
+import { teklifStepSchemas } from '../schemas/teklifSchema';
+import { CONTACT } from '../config/contact';
+import { useInView } from '../hooks/useInView';
 import '../styles/teklif-page.css';
 
 const SERVICES = [
@@ -32,23 +34,6 @@ const TIMELINES = [
   '3 Ay İçinde',
   'Henüz Bilmiyorum',
 ];
-
-function useInView(threshold = 0.05, fallbackMs = 500) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    const timer = setTimeout(() => setInView(true), fallbackMs);
-    if (!el) { clearTimeout(timer); return; }
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); clearTimeout(timer); observer.disconnect(); } },
-      { threshold, rootMargin: '0px 0px -40px 0px' }
-    );
-    observer.observe(el);
-    return () => { observer.disconnect(); clearTimeout(timer); };
-  }, [threshold, fallbackMs]);
-  return [ref, inView];
-}
 
 const STEPS = [
   { num: 1, label: 'Hizmetler' },
@@ -102,23 +87,10 @@ export default function TeklifPage() {
   }
 
   function validateStep(s) {
+    const result = teklifStepSchemas[s].safeParse(form);
+    if (result.success) return {};
     const e = {};
-    if (s === 1) {
-      if (form.services.length === 0) e.services = 'En az bir hizmet seçin.';
-    }
-    if (s === 2) {
-      if (!form.budget)   e.budget   = 'Bütçe aralığı seçin.';
-      if (!form.timeline) e.timeline = 'Zaman çizelgesi seçin.';
-    }
-    if (s === 3) {
-      const nameErr    = validateName(form.name);         if (nameErr)    e.name    = nameErr;
-      const emailErr   = validateEmail(form.email);       if (emailErr)   e.email   = emailErr;
-      const phoneErr   = validatePhone(form.phone);       if (phoneErr)   e.phone   = phoneErr;
-      const companyErr = validateCompany(form.company);   if (companyErr) e.company = companyErr;
-      const websiteErr = validateWebsite(form.website);   if (websiteErr) e.website = websiteErr;
-      const messageErr = validateMessage(form.message);   if (messageErr) e.message = messageErr;
-      if (!form.privacy) e.privacy = 'Gizlilik politikasını kabul edin.';
-    }
+    for (const issue of result.error.issues) e[issue.path[0]] = issue.message;
     return e;
   }
 
@@ -160,8 +132,9 @@ export default function TeklifPage() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setSubmitted(true);
-    } catch {
-      setSendError('Teklif gönderilemedi. Lütfen tekrar deneyin veya doğrudan info@harkanmedya.com adresine yazın.');
+    } catch (err) {
+      console.error('EmailJS gönderim hatası:', err);
+      setSendError(`Teklif gönderilemedi. Lütfen tekrar deneyin veya doğrudan ${CONTACT.email.display} adresine yazın.`);
     } finally {
       setLoading(false);
     }

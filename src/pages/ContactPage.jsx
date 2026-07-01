@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
-import { validateName, validateEmail, validatePhone } from '../utils/validators';
+import { contactSchema } from '../schemas/contactSchema';
 import { CONTACT } from '../config/contact';
+import { useInView } from '../hooks/useInView';
 import '../styles/contact-page.css';
 
 const services = [
@@ -55,31 +56,6 @@ const INFO_CARDS = [
   },
 ];
 
-function useInView(threshold = 0.05, fallbackMs = 800) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    const timer = setTimeout(() => setInView(true), fallbackMs);
-    if (!el) { clearTimeout(timer); return; }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          clearTimeout(timer);
-          observer.disconnect();
-        }
-      },
-      { threshold, rootMargin: '0px 0px -40px 0px' }
-    );
-    observer.observe(el);
-    return () => { observer.disconnect(); clearTimeout(timer); };
-  }, [threshold, fallbackMs]);
-
-  return [ref, inView];
-}
-
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '', privacy: false, _hp: '' });
   const [errors, setErrors] = useState({});
@@ -92,15 +68,10 @@ export default function ContactPage() {
   const [formRef, formInView] = useInView(0.05, 700);
 
   function validate() {
+    const result = contactSchema.safeParse(form);
+    if (result.success) return {};
     const e = {};
-    const nameErr = validateName(form.name);       if (nameErr)  e.name  = nameErr;
-    const emailErr = validateEmail(form.email);    if (emailErr) e.email = emailErr;
-    const phoneErr = validatePhone(form.phone);    if (phoneErr) e.phone = phoneErr;
-    if (!form.service) e.service = 'Lütfen bir hizmet seçin.';
-    if (!form.message.trim()) e.message = 'Mesaj zorunludur.';
-    else if (form.message.trim().length < 10)  e.message = 'Mesajınız en az 10 karakter olmalı.';
-    else if (form.message.trim().length > 2000) e.message = 'Mesajınız en fazla 2000 karakter olabilir.';
-    if (!form.privacy) e.privacy = 'Gizlilik politikasını kabul etmelisiniz.';
+    for (const issue of result.error.issues) e[issue.path[0]] = issue.message;
     return e;
   }
 
@@ -131,7 +102,8 @@ export default function ContactPage() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      console.error('EmailJS gönderim hatası:', err);
       setSendError(`Mesaj gönderilemedi. Lütfen tekrar deneyin veya doğrudan ${CONTACT.email.display} adresine yazın.`);
     } finally {
       setLoading(false);

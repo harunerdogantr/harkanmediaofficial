@@ -1,36 +1,38 @@
+import { lazy, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
-import Homepage from './pages/Homepage';
-import Partners from './pages/Partners';
 import Footer from './components/Footer';
-import About from './components/About';
-import FacebookAds from './pages/FacebookAds';
-import GoogleAds from './pages/GoogleAds';
-import ABTest from './pages/ABTest';
-import DataAnalysis from './pages/DataAnalysis';
-import DomainHosting from './pages/DomainHosting';
-import Reporting from './pages/Reporting';
-import SoftwareConsulting from './pages/SoftwareConsulting';
-import DataModeling from './pages/DataModeling';
-import SearchOptimization from './pages/SearchOptimization';
-import InstagramAds from './pages/InstagramAds';
-import LinkedInAds from './pages/LinkedInAds';
-import SocialMediaAds from './pages/SocialMediaAds';
-import GoogleLocalSeo from './pages/GoogleLocalSeo';
-import IysCozumleri from './pages/IysCozumleri';
-import DijitalPazarlama from './pages/DijitalPazarlama';
-import WebAnalitik from './pages/WebAnalitik';
-import MobilAnalitik from './pages/MobilAnalitik';
-import Calismalarimiz from './pages/Calismalarimiz';
-import ContactPage from './pages/ContactPage';
-import TeklifPage from './pages/TeklifPage';
-import GizlilikPolitikasi from './pages/GizlilikPolitikasi';
-import CerezPolitikasi from './pages/CerezPolitikasi';
-import KullanimKosullari from './pages/KullanimKosullari';
-import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
+
+const Homepage = lazy(() => import('./pages/Homepage'));
+const Partners = lazy(() => import('./pages/Partners'));
+const About = lazy(() => import('./components/About'));
+const FacebookAds = lazy(() => import('./pages/FacebookAds'));
+const GoogleAds = lazy(() => import('./pages/GoogleAds'));
+const ABTest = lazy(() => import('./pages/ABTest'));
+const DataAnalysis = lazy(() => import('./pages/DataAnalysis'));
+const DomainHosting = lazy(() => import('./pages/DomainHosting'));
+const Reporting = lazy(() => import('./pages/Reporting'));
+const SoftwareConsulting = lazy(() => import('./pages/SoftwareConsulting'));
+const DataModeling = lazy(() => import('./pages/DataModeling'));
+const SearchOptimization = lazy(() => import('./pages/SearchOptimization'));
+const InstagramAds = lazy(() => import('./pages/InstagramAds'));
+const LinkedInAds = lazy(() => import('./pages/LinkedInAds'));
+const SocialMediaAds = lazy(() => import('./pages/SocialMediaAds'));
+const GoogleLocalSeo = lazy(() => import('./pages/GoogleLocalSeo'));
+const IysCozumleri = lazy(() => import('./pages/IysCozumleri'));
+const DijitalPazarlama = lazy(() => import('./pages/DijitalPazarlama'));
+const WebAnalitik = lazy(() => import('./pages/WebAnalitik'));
+const MobilAnalitik = lazy(() => import('./pages/MobilAnalitik'));
+const Calismalarimiz = lazy(() => import('./pages/Calismalarimiz'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const TeklifPage = lazy(() => import('./pages/TeklifPage'));
+const GizlilikPolitikasi = lazy(() => import('./pages/GizlilikPolitikasi'));
+const CerezPolitikasi = lazy(() => import('./pages/CerezPolitikasi'));
+const KullanimKosullari = lazy(() => import('./pages/KullanimKosullari'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
@@ -38,27 +40,9 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="app">
-          <Helmet>
-            <title>Harkan Media - Dijital Pazarlama ve Danışmanlık</title>
-            <meta name="description" content="Harkan Media ile dijital dünyada öne çıkın. SEO, sosyal medya yönetimi, Google Ads, Facebook Ads ve daha fazlası için profesyonel dijital pazarlama hizmetleri." />
-            <meta name="keywords" content="dijital pazarlama, SEO, sosyal medya, Google Ads, Facebook Ads, Instagram Ads, LinkedIn Ads, web analitik, mobil analitik, Harkan Media" />
-            
-            {/* Open Graph / Facebook */}
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://harkanmedia.vercel.app/" />
-            <meta property="og:title" content="Harkan Media - Dijital Pazarlama ve Danışmanlık" />
-            <meta property="og:description" content="Harkan Media ile dijital dünyada öne çıkın. Profesyonel dijital pazarlama ve danışmanlık hizmetleri." />
-            
-            {/* Twitter */}
-            <meta property="twitter:card" content="summary_large_image" />
-            <meta property="twitter:url" content="https://harkanmedia.vercel.app/" />
-            <meta property="twitter:title" content="Harkan Media - Dijital Pazarlama ve Danışmanlık" />
-            <meta property="twitter:description" content="Harkan Media ile dijital dünyada öne çıkın. Profesyonel dijital pazarlama ve danışmanlık hizmetleri." />
-            
-            {/* Canonical URL */}
-            <link rel="canonical" href="https://harkanmedia.vercel.app/" />
-          </Helmet>
         <Navbar />
+        <main>
+        <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/hakkimizda" element={<About />} />
@@ -88,6 +72,8 @@ function App() {
           <Route path="/kullanim-kosullari" element={<KullanimKosullari />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
+        </main>
         <Footer />
       </div>
     </Router>

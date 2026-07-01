@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 
 export default function NotFound() {
   return (
     <>
-      <Helmet>
-        <title>404 — Sayfa Bulunamadı | Harkan Media</title>
-      </Helmet>
+      <SEO
+        title="404 — Sayfa Bulunamadı | Harkan Media"
+        description="Aradığınız sayfa bulunamadı."
+        path="/404"
+        noindex
+      />
       <div style={{
         minHeight: '70vh',
         display: 'flex',
