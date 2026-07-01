@@ -1,8 +1,28 @@
-/* Shared UI primitives — Button, Card, Input.
+/* Shared UI primitives — Button, Card, Input, Route fallbacks.
    Canonical specs chosen from the most widely-used existing patterns:
    Button  -> page-layout.css .pl-cta-btn spec (used across 19 pages)
    Card    -> page-layout.css .pl-feat-card spec (used across 18 pages)
    Input   -> contact-page.css .cp-field spec */
+
+/* Route Suspense fallback */
+.ui-route-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-route-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(35, 39, 47, 0.08);
+  border-top-color: #FF3B1D;
+  border-radius: 50%;
+  animation: ui-route-spin 0.75s linear infinite;
+}
+
+@keyframes ui-route-spin {
+  to { transform: rotate(360deg); }
+}
 
 /* Button */
 .ui-btn {

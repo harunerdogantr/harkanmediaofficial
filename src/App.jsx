@@ -1,38 +1,42 @@
-import { lazy, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { withFallback } from './utils/withFallback';
+import PageLayoutFallback from './components/fallbacks/PageLayoutFallback';
+import HomepageFallback from './components/fallbacks/HomepageFallback';
+import FormPageFallback from './components/fallbacks/FormPageFallback';
+import LegalPageFallback from './components/fallbacks/LegalPageFallback';
 
-const Homepage = lazy(() => import('./pages/Homepage'));
-const Partners = lazy(() => import('./pages/Partners'));
-const About = lazy(() => import('./components/About'));
-const FacebookAds = lazy(() => import('./pages/FacebookAds'));
-const GoogleAds = lazy(() => import('./pages/GoogleAds'));
-const ABTest = lazy(() => import('./pages/ABTest'));
-const DataAnalysis = lazy(() => import('./pages/DataAnalysis'));
-const DomainHosting = lazy(() => import('./pages/DomainHosting'));
-const Reporting = lazy(() => import('./pages/Reporting'));
-const SoftwareConsulting = lazy(() => import('./pages/SoftwareConsulting'));
-const DataModeling = lazy(() => import('./pages/DataModeling'));
-const SearchOptimization = lazy(() => import('./pages/SearchOptimization'));
-const InstagramAds = lazy(() => import('./pages/InstagramAds'));
-const LinkedInAds = lazy(() => import('./pages/LinkedInAds'));
-const SocialMediaAds = lazy(() => import('./pages/SocialMediaAds'));
-const GoogleLocalSeo = lazy(() => import('./pages/GoogleLocalSeo'));
-const IysCozumleri = lazy(() => import('./pages/IysCozumleri'));
-const DijitalPazarlama = lazy(() => import('./pages/DijitalPazarlama'));
-const WebAnalitik = lazy(() => import('./pages/WebAnalitik'));
-const MobilAnalitik = lazy(() => import('./pages/MobilAnalitik'));
-const Calismalarimiz = lazy(() => import('./pages/Calismalarimiz'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const TeklifPage = lazy(() => import('./pages/TeklifPage'));
-const GizlilikPolitikasi = lazy(() => import('./pages/GizlilikPolitikasi'));
-const CerezPolitikasi = lazy(() => import('./pages/CerezPolitikasi'));
-const KullanimKosullari = lazy(() => import('./pages/KullanimKosullari'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Homepage = withFallback(() => import('./pages/Homepage'), HomepageFallback);
+const Partners = withFallback(() => import('./pages/Partners'), PageLayoutFallback);
+const About = withFallback(() => import('./components/About'), PageLayoutFallback);
+const FacebookAds = withFallback(() => import('./pages/FacebookAds'), PageLayoutFallback);
+const GoogleAds = withFallback(() => import('./pages/GoogleAds'), PageLayoutFallback);
+const ABTest = withFallback(() => import('./pages/ABTest'), PageLayoutFallback);
+const DataAnalysis = withFallback(() => import('./pages/DataAnalysis'), PageLayoutFallback);
+const DomainHosting = withFallback(() => import('./pages/DomainHosting'), PageLayoutFallback);
+const Reporting = withFallback(() => import('./pages/Reporting'), PageLayoutFallback);
+const SoftwareConsulting = withFallback(() => import('./pages/SoftwareConsulting'), PageLayoutFallback);
+const DataModeling = withFallback(() => import('./pages/DataModeling'), PageLayoutFallback);
+const SearchOptimization = withFallback(() => import('./pages/SearchOptimization'), PageLayoutFallback);
+const InstagramAds = withFallback(() => import('./pages/InstagramAds'), PageLayoutFallback);
+const LinkedInAds = withFallback(() => import('./pages/LinkedInAds'), PageLayoutFallback);
+const SocialMediaAds = withFallback(() => import('./pages/SocialMediaAds'), PageLayoutFallback);
+const GoogleLocalSeo = withFallback(() => import('./pages/GoogleLocalSeo'), PageLayoutFallback);
+const IysCozumleri = withFallback(() => import('./pages/IysCozumleri'), PageLayoutFallback);
+const DijitalPazarlama = withFallback(() => import('./pages/DijitalPazarlama'), PageLayoutFallback);
+const WebAnalitik = withFallback(() => import('./pages/WebAnalitik'), PageLayoutFallback);
+const MobilAnalitik = withFallback(() => import('./pages/MobilAnalitik'), PageLayoutFallback);
+const Calismalarimiz = withFallback(() => import('./pages/Calismalarimiz'), PageLayoutFallback);
+const ContactPage = withFallback(() => import('./pages/ContactPage'), FormPageFallback);
+const TeklifPage = withFallback(() => import('./pages/TeklifPage'), FormPageFallback);
+const GizlilikPolitikasi = withFallback(() => import('./pages/GizlilikPolitikasi'), LegalPageFallback);
+const CerezPolitikasi = withFallback(() => import('./pages/CerezPolitikasi'), LegalPageFallback);
+const KullanimKosullari = withFallback(() => import('./pages/KullanimKosullari'), LegalPageFallback);
+const NotFound = withFallback(() => import('./pages/NotFound'), LegalPageFallback);
 
 function App() {
   return (
@@ -42,7 +46,6 @@ function App() {
       <div className="app">
         <Navbar />
         <main>
-        <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/hakkimizda" element={<About />} />
@@ -72,7 +75,6 @@ function App() {
           <Route path="/kullanim-kosullari" element={<KullanimKosullari />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        </Suspense>
         </main>
         <Footer />
       </div>
