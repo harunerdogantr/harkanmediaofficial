@@ -1,0 +1,439 @@
+import { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+import emailjs from '@emailjs/browser';
+import { validateName, validateEmail, validatePhone, validateCompany, validateWebsite, validateMessage } from '../utils/validators';
+import '../styles/teklif-page.css';
+
+const SERVICES = [
+  'SEO / Arama Optimizasyonu',
+  'Google Ads',
+  'Facebook Reklamları',
+  'Instagram Reklamları',
+  'LinkedIn Reklamları',
+  'Sosyal Medya Reklamları',
+  'Dijital Pazarlama',
+  'Veri Analizi',
+  'Web Analitiği',
+  'Mobil Analitiği',
+  'Yazılım Danışmanlığı',
+  'İYS Çözümleri',
+];
+
+const BUDGETS = [
+  '5.000 ₺ altı',
+  '5.000 – 15.000 ₺',
+  '15.000 – 30.000 ₺',
+  '30.000 ₺ üzeri',
+];
+
+const TIMELINES = [
+  'Hemen Başlayabilirim',
+  '1 Ay İçinde',
+  '3 Ay İçinde',
+  'Henüz Bilmiyorum',
+];
+
+function useInView(threshold = 0.05, fallbackMs = 500) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    const timer = setTimeout(() => setInView(true), fallbackMs);
+    if (!el) { clearTimeout(timer); return; }
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); clearTimeout(timer); observer.disconnect(); } },
+      { threshold, rootMargin: '0px 0px -40px 0px' }
+    );
+    observer.observe(el);
+    return () => { observer.disconnect(); clearTimeout(timer); };
+  }, [threshold, fallbackMs]);
+  return [ref, inView];
+}
+
+const STEPS = [
+  { num: 1, label: 'Hizmetler' },
+  { num: 2, label: 'Bütçe & Süre' },
+  { num: 3, label: 'İletişim' },
+];
+
+export default function TeklifPage() {
+  const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [sendError, setSendError] = useState('');
+
+  const [form, setForm] = useState({
+    services: [],
+    budget: '',
+    timeline: '',
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    website: '',
+    message: '',
+    privacy: false,
+    _hp: '',
+  });
+
+  const [heroRef, heroVisible] = useInView(0.05, 300);
+  const [formRef, formVisible] = useInView(0.05, 500);
+
+  function toggleService(s) {
+    setForm(prev => ({
+      ...prev,
+      services: prev.services.includes(s)
+        ? prev.services.filter(x => x !== s)
+        : [...prev.services, s],
+    }));
+    if (errors.services) setErrors(p => { const n = { ...p }; delete n.services; return n; });
+  }
+
+  function setRadio(field, val) {
+    setForm(prev => ({ ...prev, [field]: val }));
+    if (errors[field]) setErrors(p => { const n = { ...p }; delete n[field]; return n; });
+  }
+
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    if (errors[name]) setErrors(p => { const n = { ...p }; delete n[name]; return n; });
+  }
+
+  function validateStep(s) {
+    const e = {};
+    if (s === 1) {
+      if (form.services.length === 0) e.services = 'En az bir hizmet seçin.';
+    }
+    if (s === 2) {
+      if (!form.budget)   e.budget   = 'Bütçe aralığı seçin.';
+      if (!form.timeline) e.timeline = 'Zaman çizelgesi seçin.';
+    }
+    if (s === 3) {
+      const nameErr    = validateName(form.name);         if (nameErr)    e.name    = nameErr;
+      const emailErr   = validateEmail(form.email);       if (emailErr)   e.email   = emailErr;
+      const phoneErr   = validatePhone(form.phone);       if (phoneErr)   e.phone   = phoneErr;
+      const companyErr = validateCompany(form.company);   if (companyErr) e.company = companyErr;
+      const websiteErr = validateWebsite(form.website);   if (websiteErr) e.website = websiteErr;
+      const messageErr = validateMessage(form.message);   if (messageErr) e.message = messageErr;
+      if (!form.privacy) e.privacy = 'Gizlilik politikasını kabul edin.';
+    }
+    return e;
+  }
+
+  useEffect(() => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [step]);
+
+  function next() {
+    const e = validateStep(step);
+    if (Object.keys(e).length > 0) { setErrors(e); return; }
+    setErrors({});
+    setStep(s => s + 1);
+  }
+
+  function back() { setErrors({}); setStep(s => s - 1); }
+
+  async function submit(e) {
+    e.preventDefault();
+    if (form._hp) return; // honeypot: silently discard bot submissions
+    const errs = validateStep(3);
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    setLoading(true);
+    setSendError('');
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_QUOTE_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone,
+          company: form.company || '—',
+          website: form.website || '—',
+          services: form.services.join(', '),
+          budget: form.budget,
+          timeline: form.timeline,
+          message: form.message || '—',
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+    } catch {
+      setSendError('Teklif gönderilemedi. Lütfen tekrar deneyin veya doğrudan info@harkanmedya.com adresine yazın.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const ChevronLeft = () => (
+    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+      <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  const ChevronRight = () => (
+    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+      <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  const CheckIcon = () => (
+    <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+      <path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+
+  return (
+    <>
+      <Helmet>
+        <title>Teklif İste - Harkan Media | Dijital Pazarlama ve Danışmanlık</title>
+        <meta name="description" content="Harkan Media'dan ücretsiz teklif alın. Hizmet seçimi, bütçe aralığı ve iletişim bilgilerinizi paylaşın, 24 saat içinde dönelim." />
+        <link rel="canonical" href="https://harkanmedia.com/teklif" />
+      </Helmet>
+
+      {/* HERO */}
+      <section className="tp-hero">
+        <div className="tp-hero-bg" aria-hidden="true">
+          <span className="tp-blob tp-blob-1" />
+          <span className="tp-blob tp-blob-2" />
+          <span className="tp-grid" />
+        </div>
+        <div ref={heroRef} className={`tp-hero-content${heroVisible ? ' tp-visible' : ''}`}>
+          <span className="tp-eyebrow">Ücretsiz Teklif</span>
+          <h1 className="tp-hero-title">
+            Projenizi <span className="tp-accent">Birlikte</span> Büyütelim
+          </h1>
+          <p className="tp-hero-sub">
+            3 adımda teklif talebinizi iletin — ekibimiz 24 saat içinde size özel<br />
+            bir strateji ile geri dönsün.
+          </p>
+          <div className="tp-breadcrumb">
+            <span>Harkan Medya</span>
+            <span className="tp-sep">/</span>
+            <span className="tp-active">Teklif İste</span>
+          </div>
+        </div>
+      </section>
+
+      {/* FORM */}
+      <section className="tp-section">
+        <div ref={formRef} className={`tp-inner${formVisible ? ' tp-visible' : ''}`}>
+
+          {/* Steps indicator */}
+          {!submitted && (
+            <div className="tp-steps">
+              {STEPS.map((s, i) => (
+                <>
+                  <div key={s.num} className={`tp-step${step === s.num ? ' tp-step-active' : step > s.num ? ' tp-step-done' : ''}`}>
+                    <div className="tp-step-num">
+                      {step > s.num
+                        ? <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        : s.num}
+                    </div>
+                    <span>{s.label}</span>
+                  </div>
+                  {i < STEPS.length - 1 && (
+                    <div key={`line-${i}`} className={`tp-step-line${step > s.num ? ' tp-line-done' : ''}`} />
+                  )}
+                </>
+              ))}
+            </div>
+          )}
+
+          <div className="tp-form-card">
+
+            {/* ── STEP 1: Hizmetler ── */}
+            {step === 1 && (
+              <>
+                <h2 className="tp-step-title">Hangi hizmetleri istiyorsunuz?</h2>
+                <p className="tp-step-desc">Birden fazla seçebilirsiniz.</p>
+                <div className="tp-services-grid">
+                  {SERVICES.map(s => {
+                    const checked = form.services.includes(s);
+                    return (
+                      <button
+                        key={s}
+                        type="button"
+                        className={`tp-cb-label${checked ? ' tp-cb-checked' : ''}`}
+                        onClick={() => toggleService(s)}
+                        aria-pressed={checked}
+                      >
+                        <span className="tp-cb-box">
+                          <span className="tp-cb-check"><CheckIcon /></span>
+                        </span>
+                        {s}
+                      </button>
+                    );
+                  })}
+                </div>
+                {errors.services && <p className="tp-err" style={{ marginTop: 12 }}>{errors.services}</p>}
+                <div className="tp-form-actions">
+                  <span />
+                  <button type="button" className="tp-btn-next" onClick={next}>
+                    Devam Et <ChevronRight />
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* ── STEP 2: Bütçe & Zaman ── */}
+            {step === 2 && (
+              <>
+                <h2 className="tp-step-title">Bütçe ve zaman çizelgesi</h2>
+                <p className="tp-step-desc">Aylık bütçenizi ve ne zaman başlamak istediğinizi paylaşın.</p>
+
+                <div className="tp-group">
+                  <div className="tp-sub-head">Aylık Bütçe Aralığı</div>
+                  <div className="tp-radio-group">
+                    {BUDGETS.map(b => {
+                      const checked = form.budget === b;
+                      return (
+                        <button
+                          key={b}
+                          type="button"
+                          className={`tp-radio-label${checked ? ' tp-radio-checked' : ''}`}
+                          onClick={() => setRadio('budget', b)}
+                          aria-pressed={checked}
+                        >
+                          <span className="tp-radio-dot"><span className="tp-radio-inner" /></span>
+                          {b}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.budget && <p className="tp-err" style={{ marginTop: 8 }}>{errors.budget}</p>}
+                </div>
+
+                <div className="tp-group">
+                  <div className="tp-sub-head">Ne Zaman Başlamak İstiyorsunuz?</div>
+                  <div className="tp-radio-group">
+                    {TIMELINES.map(t => {
+                      const checked = form.timeline === t;
+                      return (
+                        <button
+                          key={t}
+                          type="button"
+                          className={`tp-radio-label${checked ? ' tp-radio-checked' : ''}`}
+                          onClick={() => setRadio('timeline', t)}
+                          aria-pressed={checked}
+                        >
+                          <span className="tp-radio-dot"><span className="tp-radio-inner" /></span>
+                          {t}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.timeline && <p className="tp-err" style={{ marginTop: 8 }}>{errors.timeline}</p>}
+                </div>
+
+                <div className="tp-form-actions">
+                  <button type="button" className="tp-btn-back" onClick={back}><ChevronLeft /> Geri</button>
+                  <button type="button" className="tp-btn-next" onClick={next}>Devam Et <ChevronRight /></button>
+                </div>
+              </>
+            )}
+
+            {/* ── STEP 3: İletişim ── */}
+            {step === 3 && !submitted && (
+              <form onSubmit={submit} noValidate>
+                {/* honeypot — hidden from real users, bots fill it, we reject silently */}
+                <input
+                  type="text"
+                  name="_hp"
+                  value={form._hp}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                />
+                <h2 className="tp-step-title">İletişim bilgileriniz</h2>
+                <p className="tp-step-desc">Teklifinizi hazırlayıp size ulaşalım.</p>
+
+                <div className="tp-row">
+                  <div className={`tp-field${errors.name ? ' tp-field-error' : ''}`}>
+                    <label>Ad Soyad</label>
+                    <input name="name" type="text" placeholder="Adınız Soyadınız" value={form.name} onChange={handleChange} onKeyDown={e => { if (!/[a-zA-ZğüşıöçĞÜŞİÖÇ\s\b]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }} />
+                    {errors.name && <span className="tp-err">{errors.name}</span>}
+                  </div>
+                  <div className={`tp-field${errors.email ? ' tp-field-error' : ''}`}>
+                    <label>E-Posta</label>
+                    <input name="email" type="email" placeholder="ornek@sirket.com" value={form.email} onChange={handleChange} />
+                    {errors.email && <span className="tp-err">{errors.email}</span>}
+                  </div>
+                </div>
+
+                <div className="tp-row">
+                  <div className={`tp-field${errors.phone ? ' tp-field-error' : ''}`}>
+                    <label>Telefon</label>
+                    <input name="phone" type="tel" placeholder="05XX XXX XX XX" value={form.phone} onChange={handleChange} onKeyDown={e => { if (!/[\d\s\+\-\(\)\b]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }} />
+                    {errors.phone && <span className="tp-err">{errors.phone}</span>}
+                  </div>
+                  <div className={`tp-field${errors.company ? ' tp-field-error' : ''}`}>
+                    <label>Şirket Adı <span className="tp-optional">(isteğe bağlı)</span></label>
+                    <input name="company" type="text" placeholder="Şirket Adı" value={form.company} onChange={handleChange} maxLength={50} />
+                    {errors.company && <span className="tp-err">{errors.company}</span>}
+                  </div>
+                </div>
+
+                <div className="tp-row">
+                  <div className={`tp-field${errors.website ? ' tp-field-error' : ''}`}>
+                    <label>Web Sitesi <span className="tp-optional">(isteğe bağlı)</span></label>
+                    <input name="website" type="url" placeholder="https://sirketiniz.com" value={form.website} onChange={handleChange} />
+                    {errors.website && <span className="tp-err">{errors.website}</span>}
+                  </div>
+                  <div className={`tp-field${errors.message ? ' tp-field-error' : ''}`}>
+                    <label>Proje Hakkında <span className="tp-optional">(isteğe bağlı)</span></label>
+                    <input name="message" type="text" placeholder="Kısa bir not..." value={form.message} onChange={handleChange} maxLength={300} />
+                    {errors.message && <span className="tp-err">{errors.message}</span>}
+                  </div>
+                </div>
+
+                <div className="tp-privacy-row">
+                  <input id="tp-privacy" name="privacy" type="checkbox" checked={form.privacy} onChange={handleChange} />
+                  <label htmlFor="tp-privacy">
+                    <a href="/gizlilik-politikasi" target="_blank" rel="noopener noreferrer">Gizlilik Politikası</a>'nı okudum ve kabul ediyorum.
+                    {errors.privacy && <span className="tp-err" style={{ display: 'block', marginTop: 4 }}>{errors.privacy}</span>}
+                  </label>
+                </div>
+
+                {sendError && <p className="tp-err tp-err-send" role="alert">{sendError}</p>}
+                <div className="tp-form-actions">
+                  <button type="button" className="tp-btn-back" onClick={back}><ChevronLeft /> Geri</button>
+                  <button type="submit" className="tp-btn-next" disabled={loading}>
+                    {loading ? <span className="tp-spinner" /> : <>Teklif Gönder <ChevronRight /></>}
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* ── SUCCESS ── */}
+            {submitted && (
+              <div className="tp-success">
+                <div className="tp-success-icon">
+                  <svg viewBox="0 0 52 52" fill="none">
+                    <circle className="tp-check-circle" cx="26" cy="26" r="25" stroke="#FF3B1D" strokeWidth="2" fill="none" />
+                    <path className="tp-check-tick" d="M14 27l8 8 16-16" stroke="#FF3B1D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </svg>
+                </div>
+                <h3>Teklifiniz Alındı!</h3>
+                <p>Seçimlerinize özel bir strateji hazırlayıp 24 saat içinde sizinle iletişime geçeceğiz. Teşekkür ederiz.</p>
+                <button
+                  className="tp-btn-next"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setStep(1);
+                    setForm({ services: [], budget: '', timeline: '', name: '', email: '', phone: '', company: '', website: '', message: '', privacy: false });
+                  }}
+                >
+                  Yeni Teklif İste
+                </button>
+              </div>
+            )}
+
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

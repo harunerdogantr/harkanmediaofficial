@@ -1,0 +1,123 @@
+/* ─── LEGAL PAGES (Gizlilik, Çerez, Kullanım Koşulları) ─── */
+
+.lp-hero {
+  background: linear-gradient(135deg, #0f1117 0%, #1a1d23 100%);
+  padding: 120px 32px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.lp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,59,29,.12), transparent);
+  pointer-events: none;
+}
+.lp-eyebrow {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: #FF3B1D;
+  background: rgba(255,59,29,.1);
+  border: 1px solid rgba(255,59,29,.2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  margin-bottom: 20px;
+}
+.lp-hero-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: -.02em;
+}
+.lp-hero-date {
+  font-size: .82rem;
+  color: rgba(255,255,255,.35);
+}
+
+/* ─── CONTENT ─── */
+.lp-content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 64px 32px 96px;
+}
+
+.lp-section {
+  margin-bottom: 48px;
+}
+.lp-section:last-child {
+  margin-bottom: 0;
+}
+
+.lp-section h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+  position: relative;
+}
+.lp-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #FF3B1D;
+}
+
+.lp-section p {
+  font-size: .92rem;
+  color: #444;
+  line-height: 1.8;
+  margin: 0 0 12px;
+}
+.lp-section p:last-child {
+  margin-bottom: 0;
+}
+
+.lp-section ul {
+  margin: 8px 0 12px 0;
+  padding-left: 20px;
+}
+.lp-section ul li {
+  font-size: .92rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 4px;
+}
+
+.lp-contact-box {
+  margin-top: 48px;
+  background: #f8f8f8;
+  border: 1px solid #eee;
+  border-left: 4px solid #FF3B1D;
+  border-radius: 10px;
+  padding: 24px 28px;
+}
+.lp-contact-box p {
+  margin: 0 0 6px;
+  font-size: .9rem;
+  color: #444;
+}
+.lp-contact-box p a,
+.lp-contact-box p a:visited {
+  color: #FF3B1D;
+  text-decoration: none;
+  font-weight: 600;
+}
+.lp-contact-box p a:hover {
+  color: #e5310f;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .lp-hero { padding: 100px 20px 48px; }
+  .lp-content { padding: 40px 20px 64px; }
+}
