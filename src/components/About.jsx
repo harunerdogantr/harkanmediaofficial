@@ -1,5 +1,6 @@
 import SEO from './SEO';
-import { Link } from 'react-router-dom';
+import Button from './ui/Button';
+import Card from './ui/Card';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
 
@@ -76,11 +77,7 @@ export default function About() {
       <section className="pl-cards-section">
         <div ref={cardsRef} className={`pl-cards pl-cards-3${cardsVisible ? ' pl-visible' : ''}`}>
           {FEATURES.map((f, i) => (
-            <div key={f.title} className="pl-feat-card" style={{ '--delay': `${i * 0.1}s` }}>
-              <div className="pl-feat-icon">{f.icon}</div>
-              <div className="pl-feat-title">{f.title}</div>
-              <p className="pl-feat-desc">{f.desc}</p>
-            </div>
+            <Card key={f.title} icon={f.icon} title={f.title} description={f.desc} style={{ '--delay': `${i * 0.1}s` }} />
           ))}
         </div>
       </section>
@@ -116,12 +113,7 @@ export default function About() {
             <h2 className="pl-cta-title">Projenizi Hayata Geçirmeye Hazır mısınız?</h2>
             <p className="pl-cta-sub">Ekibimizle tanışın, ihtiyaçlarınızı konuşalım ve size özel bir strateji oluşturalım.</p>
           </div>
-          <Link to="/iletisim" className="pl-cta-btn">
-            Hemen İletişime Geçin
-            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+          <Button to="/iletisim">Hemen İletişime Geçin</Button>
         </div>
       </div>
     </>

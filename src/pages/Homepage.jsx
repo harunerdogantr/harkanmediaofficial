@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import CountUp from 'react-countup';
 import SEO from '../components/SEO';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 import { useInView } from '../hooks/useInView';
 import '../styles/homepage.css';
 
@@ -119,11 +121,8 @@ export default function Homepage() {
               veri analitiğinden yazılım danışmanlığına kadar markanızı 360° büyütüyoruz.
             </p>
             <div className="hp-hero-actions">
-              <Link to="/teklif" className="hp-btn-primary">
-                Ücretsiz Teklif Al
-                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </Link>
-              <Link to="/hakkimizda" className="hp-btn-ghost">Bizi Tanıyın</Link>
+              <Button to="/teklif">Ücretsiz Teklif Al</Button>
+              <Button to="/hakkimizda" variant="ghost">Bizi Tanıyın</Button>
             </div>
           </div>
 
@@ -230,15 +229,7 @@ export default function Homepage() {
         </div>
         <div ref={svcRef} className={`hp-svc-grid${svcVisible ? ' hp-visible' : ''}`}>
           {SERVICES.map((s, i) => (
-            <Link key={s.title} to={s.href} className="hp-svc-card" style={{ '--delay': `${i * 0.06}s` }}>
-              <div className="hp-svc-icon">{s.icon}</div>
-              <h3 className="hp-svc-title">{s.title}</h3>
-              <p className="hp-svc-desc">{s.desc}</p>
-              <span className="hp-svc-arrow">
-                Detaylar
-                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </span>
-            </Link>
+            <Card key={s.title} to={s.href} icon={s.icon} title={s.title} description={s.desc} arrowLabel="Detaylar" style={{ '--delay': `${i * 0.06}s` }} />
           ))}
         </div>
       </section>
@@ -370,10 +361,7 @@ export default function Homepage() {
             <h2 className="hp-cta-title">Projenizi Birlikte Büyütelim</h2>
             <p className="hp-cta-sub">Ücretsiz ön değerlendirme için bizimle iletişime geçin, 24 saat içinde dönüyoruz.</p>
           </div>
-          <Link to="/teklif" className="hp-cta-btn">
-            Teklif İste
-            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </Link>
+          <Button to="/teklif">Teklif İste</Button>
         </div>
       </div>
     </>

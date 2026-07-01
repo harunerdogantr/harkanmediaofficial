@@ -1,5 +1,6 @@
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
 
@@ -65,11 +66,7 @@ export default function Partners() {
       <section className="pl-cards-section">
         <div ref={cardsRef} className={`pl-cards pl-cards-3${cardsVisible ? ' pl-visible' : ''}`}>
           {STATS.map((s, i) => (
-            <div key={s.title} className="pl-feat-card" style={{ '--delay': `${i * 0.1}s` }}>
-              <div className="pl-feat-icon">{s.icon}</div>
-              <div className="pl-feat-title">{s.title}</div>
-              <p className="pl-feat-desc">{s.desc}</p>
-            </div>
+            <Card key={s.title} icon={s.icon} title={s.title} description={s.desc} style={{ '--delay': `${i * 0.1}s` }} />
           ))}
         </div>
       </section>
@@ -153,12 +150,7 @@ export default function Partners() {
             <h2 className="pl-cta-title">Sertifikalı Ekibimizle Tanışın</h2>
             <p className="pl-cta-sub">Google ve Meta iş ortaklığımız sayesinde kampanyalarınıza stratejik bir güç katıyoruz.</p>
           </div>
-          <Link to="/iletisim" className="pl-cta-btn">
-            Teklif Alın
-            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+          <Button to="/iletisim">Teklif Alın</Button>
         </div>
       </div>
     </>

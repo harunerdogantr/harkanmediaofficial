@@ -1,0 +1,160 @@
+/* Shared UI primitives — Button, Card, Input.
+   Canonical specs chosen from the most widely-used existing patterns:
+   Button  -> page-layout.css .pl-cta-btn spec (used across 19 pages)
+   Card    -> page-layout.css .pl-feat-card spec (used across 18 pages)
+   Input   -> contact-page.css .cp-field spec */
+
+/* Button */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.ui-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ui-btn-primary {
+  background: #FF3B1D;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 59, 29, 0.25);
+}
+
+.ui-btn-primary:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 59, 29, 0.32);
+}
+
+.ui-btn-ghost {
+  background: #fff;
+  color: #23272F;
+  border: 1.5px solid #e0e0e0;
+}
+
+.ui-btn-ghost:not(:disabled):hover {
+  border-color: #FF3B1D;
+  color: #FF3B1D;
+}
+
+.ui-btn-text {
+  height: auto;
+  padding: 8px 4px;
+  background: transparent;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.ui-btn-text:not(:disabled):hover {
+  color: #23272F;
+}
+
+/* Card */
+.ui-card {
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  background: #fff;
+  padding: 28px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.ui-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.ui-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(255, 59, 29, 0.08);
+  color: #FF3B1D;
+  margin-bottom: 16px;
+}
+
+.ui-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #23272F;
+  margin: 0 0 8px;
+}
+
+.ui-card-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.ui-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FF3B1D;
+}
+
+/* Input */
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ui-field label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #23272F;
+}
+
+.ui-field input,
+.ui-field textarea,
+.ui-field select {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14.5px;
+  font-family: inherit;
+  background: #fafafa;
+  color: #23272F;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ui-field input:focus,
+.ui-field textarea:focus,
+.ui-field select:focus {
+  outline: none;
+  border-color: #FF3B1D;
+  background: #fff;
+}
+
+.ui-field-error input,
+.ui-field-error textarea,
+.ui-field-error select {
+  border-color: #dc2626;
+}
+
+.ui-field-err {
+  font-size: 12.5px;
+  color: #dc2626;
+}

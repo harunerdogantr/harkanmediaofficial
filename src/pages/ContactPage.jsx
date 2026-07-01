@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
+import Input from '../components/ui/Input';
 import { contactSchema } from '../schemas/contactSchema';
 import { CONTACT } from '../config/contact';
 import { useInView } from '../hooks/useInView';
@@ -147,17 +150,14 @@ export default function ContactPage() {
       <section className="cp-cards-section">
         <div ref={cardsRef} className={`cp-cards${cardsInView ? ' cp-visible' : ''}`}>
           {INFO_CARDS.map((card, i) => (
-            <a
+            <Card
               key={card.label}
               href={card.href}
-              className="cp-info-card"
+              icon={card.icon}
+              title={card.label}
+              description={card.value}
               style={{ '--delay': `${i * 0.12}s` }}
-            >
-              <span className="cp-card-icon">{card.icon}</span>
-              <span className="cp-card-label">{card.label}</span>
-              <span className="cp-card-value">{card.value}</span>
-              <span className="cp-card-arrow">→</span>
-            </a>
+            />
           ))}
         </div>
       </section>
@@ -187,9 +187,9 @@ export default function ContactPage() {
                 </div>
                 <h3>Mesajınız Alındı!</h3>
                 <p>En kısa sürede sizinle iletişime geçeceğiz. Teşekkür ederiz.</p>
-                <button className="cp-btn" onClick={() => { setSubmitted(false); setSendError(''); setForm({ name: '', email: '', phone: '', service: '', message: '', privacy: false, _hp: '' }); }}>
+                <Button onClick={() => { setSubmitted(false); setSendError(''); setForm({ name: '', email: '', phone: '', service: '', message: '', privacy: false, _hp: '' }); }}>
                   Yeni Mesaj Gönder
-                </button>
+                </Button>
               </div>
             ) : (
               <form className="cp-form" onSubmit={handleSubmit} noValidate>
@@ -205,24 +205,24 @@ export default function ContactPage() {
                   style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
                 />
                 <div className="cp-form-row">
-                  <div className={`cp-field${errors.name ? ' cp-field-error' : ''}`}>
-                    <label htmlFor="cp-name">Ad Soyad</label>
-                    <input id="cp-name" name="name" type="text" placeholder="Adınız Soyadınız" value={form.name} onChange={handleChange} autoComplete="name" onKeyDown={e => { if (!/[a-zA-ZğüşıöçĞÜŞİÖÇ\s\b]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }} />
-                    {errors.name && <span className="cp-err">{errors.name}</span>}
-                  </div>
-                  <div className={`cp-field${errors.email ? ' cp-field-error' : ''}`}>
-                    <label htmlFor="cp-email">E-Posta</label>
-                    <input id="cp-email" name="email" type="email" placeholder="ornek@sirket.com" value={form.email} onChange={handleChange} autoComplete="email" />
-                    {errors.email && <span className="cp-err">{errors.email}</span>}
-                  </div>
+                  <Input
+                    label="Ad Soyad" name="name" type="text" placeholder="Adınız Soyadınız"
+                    value={form.name} onChange={handleChange} autoComplete="name" filter="name"
+                    error={errors.name}
+                  />
+                  <Input
+                    label="E-Posta" name="email" type="email" placeholder="ornek@sirket.com"
+                    value={form.email} onChange={handleChange} autoComplete="email"
+                    error={errors.email}
+                  />
                 </div>
 
                 <div className="cp-form-row">
-                  <div className={`cp-field${errors.phone ? ' cp-field-error' : ''}`}>
-                    <label htmlFor="cp-phone">Telefon</label>
-                    <input id="cp-phone" name="phone" type="tel" placeholder="05XX XXX XX XX" value={form.phone} onChange={handleChange} autoComplete="tel" onKeyDown={e => { if (!/[\d\s\+\-\(\)\b]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }} />
-                    {errors.phone && <span className="cp-err">{errors.phone}</span>}
-                  </div>
+                  <Input
+                    label="Telefon" name="phone" type="tel" placeholder="05XX XXX XX XX"
+                    value={form.phone} onChange={handleChange} autoComplete="tel" filter="phone"
+                    error={errors.phone}
+                  />
                   <div className={`cp-field${errors.service ? ' cp-field-error' : ''}`}>
                     <label htmlFor="cp-service">Hizmet</label>
                     <select id="cp-service" name="service" value={form.service} onChange={handleChange}>
@@ -233,11 +233,13 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className={`cp-field cp-field-full${errors.message ? ' cp-field-error' : ''}`}>
-                  <label htmlFor="cp-message">Mesajınız</label>
-                  <textarea id="cp-message" name="message" rows={5} placeholder="Proje veya ihtiyacınızı kısaca anlatın..." value={form.message} onChange={handleChange} maxLength={2000} />
-                  {errors.message && <span className="cp-err">{errors.message}</span>}
-                </div>
+                <Input
+                  className="cp-field-full"
+                  as="textarea" label="Mesajınız" name="message" rows={5}
+                  placeholder="Proje veya ihtiyacınızı kısaca anlatın..." value={form.message}
+                  onChange={handleChange} maxLength={2000}
+                  error={errors.message}
+                />
 
                 <div className={`cp-checkbox-row${errors.privacy ? ' cp-field-error' : ''}`}>
                   <input id="cp-privacy" name="privacy" type="checkbox" checked={form.privacy} onChange={handleChange} />
@@ -248,18 +250,9 @@ export default function ContactPage() {
                 </div>
 
                 {sendError && <p className="cp-err cp-err-send" role="alert">{sendError}</p>}
-                <button type="submit" className="cp-btn cp-submit-btn" disabled={loading} aria-label="Formu gönder">
-                  {loading ? (
-                    <span className="cp-spinner" aria-hidden="true" />
-                  ) : (
-                    <>
-                      Mesaj Gönder
-                      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </>
-                  )}
-                </button>
+                <Button type="submit" disabled={loading} aria-label="Formu gönder" icon={loading ? null : undefined}>
+                  {loading ? <span className="cp-spinner" aria-hidden="true" /> : 'Mesaj Gönder'}
+                </Button>
               </form>
             )}
           </div>

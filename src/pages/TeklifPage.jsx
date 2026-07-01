@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
 import { teklifStepSchemas } from '../schemas/teklifSchema';
 import { CONTACT } from '../config/contact';
 import { useInView } from '../hooks/useInView';
@@ -242,9 +244,7 @@ export default function TeklifPage() {
                 {errors.services && <p className="tp-err" style={{ marginTop: 12 }}>{errors.services}</p>}
                 <div className="tp-form-actions">
                   <span />
-                  <button type="button" className="tp-btn-next" onClick={next}>
-                    Devam Et <ChevronRight />
-                  </button>
+                  <Button onClick={next} icon={<ChevronRight />}>Devam Et</Button>
                 </div>
               </>
             )}
@@ -300,8 +300,8 @@ export default function TeklifPage() {
                 </div>
 
                 <div className="tp-form-actions">
-                  <button type="button" className="tp-btn-back" onClick={back}><ChevronLeft /> Geri</button>
-                  <button type="button" className="tp-btn-next" onClick={next}>Devam Et <ChevronRight /></button>
+                  <Button variant="text" onClick={back} icon={<ChevronLeft />} iconPosition="start">Geri</Button>
+                  <Button onClick={next} icon={<ChevronRight />}>Devam Et</Button>
                 </div>
               </>
             )}
@@ -324,42 +324,45 @@ export default function TeklifPage() {
                 <p className="tp-step-desc">Teklifinizi hazırlayıp size ulaşalım.</p>
 
                 <div className="tp-row">
-                  <div className={`tp-field${errors.name ? ' tp-field-error' : ''}`}>
-                    <label>Ad Soyad</label>
-                    <input name="name" type="text" placeholder="Adınız Soyadınız" value={form.name} onChange={handleChange} onKeyDown={e => { if (!/[a-zA-ZğüşıöçĞÜŞİÖÇ\s\b]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }} />
-                    {errors.name && <span className="tp-err">{errors.name}</span>}
-                  </div>
-                  <div className={`tp-field${errors.email ? ' tp-field-error' : ''}`}>
-                    <label>E-Posta</label>
-                    <input name="email" type="email" placeholder="ornek@sirket.com" value={form.email} onChange={handleChange} />
-                    {errors.email && <span className="tp-err">{errors.email}</span>}
-                  </div>
+                  <Input
+                    label="Ad Soyad" name="name" type="text" placeholder="Adınız Soyadınız"
+                    value={form.name} onChange={handleChange} filter="name"
+                    error={errors.name}
+                  />
+                  <Input
+                    label="E-Posta" name="email" type="email" placeholder="ornek@sirket.com"
+                    value={form.email} onChange={handleChange}
+                    error={errors.email}
+                  />
                 </div>
 
                 <div className="tp-row">
-                  <div className={`tp-field${errors.phone ? ' tp-field-error' : ''}`}>
-                    <label>Telefon</label>
-                    <input name="phone" type="tel" placeholder="05XX XXX XX XX" value={form.phone} onChange={handleChange} onKeyDown={e => { if (!/[\d\s\+\-\(\)\b]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }} />
-                    {errors.phone && <span className="tp-err">{errors.phone}</span>}
-                  </div>
-                  <div className={`tp-field${errors.company ? ' tp-field-error' : ''}`}>
-                    <label>Şirket Adı <span className="tp-optional">(isteğe bağlı)</span></label>
-                    <input name="company" type="text" placeholder="Şirket Adı" value={form.company} onChange={handleChange} maxLength={50} />
-                    {errors.company && <span className="tp-err">{errors.company}</span>}
-                  </div>
+                  <Input
+                    label="Telefon" name="phone" type="tel" placeholder="05XX XXX XX XX"
+                    value={form.phone} onChange={handleChange} filter="phone"
+                    error={errors.phone}
+                  />
+                  <Input
+                    label={<>Şirket Adı <span className="tp-optional">(isteğe bağlı)</span></>}
+                    name="company" type="text" placeholder="Şirket Adı"
+                    value={form.company} onChange={handleChange} maxLength={50}
+                    error={errors.company}
+                  />
                 </div>
 
                 <div className="tp-row">
-                  <div className={`tp-field${errors.website ? ' tp-field-error' : ''}`}>
-                    <label>Web Sitesi <span className="tp-optional">(isteğe bağlı)</span></label>
-                    <input name="website" type="url" placeholder="https://sirketiniz.com" value={form.website} onChange={handleChange} />
-                    {errors.website && <span className="tp-err">{errors.website}</span>}
-                  </div>
-                  <div className={`tp-field${errors.message ? ' tp-field-error' : ''}`}>
-                    <label>Proje Hakkında <span className="tp-optional">(isteğe bağlı)</span></label>
-                    <input name="message" type="text" placeholder="Kısa bir not..." value={form.message} onChange={handleChange} maxLength={300} />
-                    {errors.message && <span className="tp-err">{errors.message}</span>}
-                  </div>
+                  <Input
+                    label={<>Web Sitesi <span className="tp-optional">(isteğe bağlı)</span></>}
+                    name="website" type="url" placeholder="https://sirketiniz.com"
+                    value={form.website} onChange={handleChange}
+                    error={errors.website}
+                  />
+                  <Input
+                    label={<>Proje Hakkında <span className="tp-optional">(isteğe bağlı)</span></>}
+                    name="message" type="text" placeholder="Kısa bir not..."
+                    value={form.message} onChange={handleChange} maxLength={300}
+                    error={errors.message}
+                  />
                 </div>
 
                 <div className="tp-privacy-row">
@@ -372,10 +375,10 @@ export default function TeklifPage() {
 
                 {sendError && <p className="tp-err tp-err-send" role="alert">{sendError}</p>}
                 <div className="tp-form-actions">
-                  <button type="button" className="tp-btn-back" onClick={back}><ChevronLeft /> Geri</button>
-                  <button type="submit" className="tp-btn-next" disabled={loading}>
-                    {loading ? <span className="tp-spinner" /> : <>Teklif Gönder <ChevronRight /></>}
-                  </button>
+                  <Button variant="text" onClick={back} icon={<ChevronLeft />} iconPosition="start">Geri</Button>
+                  <Button type="submit" disabled={loading} icon={loading ? null : <ChevronRight />}>
+                    {loading ? <span className="tp-spinner" /> : 'Teklif Gönder'}
+                  </Button>
                 </div>
               </form>
             )}
@@ -391,8 +394,7 @@ export default function TeklifPage() {
                 </div>
                 <h3>Teklifiniz Alındı!</h3>
                 <p>Seçimlerinize özel bir strateji hazırlayıp 24 saat içinde sizinle iletişime geçeceğiz. Teşekkür ederiz.</p>
-                <button
-                  className="tp-btn-next"
+                <Button
                   onClick={() => {
                     setSubmitted(false);
                     setStep(1);
@@ -400,7 +402,7 @@ export default function TeklifPage() {
                   }}
                 >
                   Yeni Teklif İste
-                </button>
+                </Button>
               </div>
             )}
 

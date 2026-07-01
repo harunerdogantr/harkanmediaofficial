@@ -1,5 +1,5 @@
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
 import '../styles/calismalarimiz.css';
@@ -78,7 +78,7 @@ export default function Calismalarimiz() {
       <div className="pl-cta-wrap">
         <div ref={ctaRef} className={`pl-cta${ctaVisible ? ' pl-visible' : ''}`}>
           <div className="pl-cta-text"><div className="pl-cta-eyebrow">Bir Sonraki Başarı Hikayesi</div><h2 className="pl-cta-title">Projenizi Portföyümüze Ekleyelim</h2><p className="pl-cta-sub">İhtiyaçlarınızı paylaşın, sizin için en uygun stratejiyi birlikte oluşturalım.</p></div>
-          <Link to="/iletisim" className="pl-cta-btn">Hemen Başlayın<svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>
+          <Button to="/iletisim">Hemen Başlayın</Button>
         </div>
       </div>
     </>

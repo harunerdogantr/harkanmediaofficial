@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Button from './ui/Button';
 import { CONTACT } from '../config/contact';
 import '../styles/footer.css';
 
@@ -65,9 +66,7 @@ export default function Footer() {
             <h2 className="ft-top-title">Markanızı dijitalde büyütelim.</h2>
           </div>
           <div className="ft-top-actions">
-            <Link to="/teklif" className="ft-top-btn">
-              <SendIcon /> Ücretsiz Teklif Al
-            </Link>
+            <Button to="/teklif" icon={<SendIcon />} iconPosition="start">Ücretsiz Teklif Al</Button>
             <Link to="/iletisim" className="ft-top-link">İletişime Geçin →</Link>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 import { useInView } from '../hooks/useInView';
 import '../styles/page-layout.css';
 
@@ -60,7 +61,7 @@ export default function InstagramAds() {
       </section>
       <section className="pl-cards-section">
         <div ref={cardsRef} className={`pl-cards pl-cards-3${cardsVisible ? ' pl-visible' : ''}`}>
-          {FEATURES.map((f, i) => (<div key={f.title} className="pl-feat-card" style={{ '--delay': `${i * 0.1}s` }}><div className="pl-feat-icon">{f.icon}</div><div className="pl-feat-title">{f.title}</div><p className="pl-feat-desc">{f.desc}</p></div>))}
+          {FEATURES.map((f, i) => (<Card key={f.title} icon={f.icon} title={f.title} description={f.desc} style={{ '--delay': `${i * 0.1}s` }} />))}
         </div>
       </section>
       <div className="pl-content-wrap"><div className="pl-content-inner">
@@ -77,7 +78,7 @@ export default function InstagramAds() {
       <div className="pl-cta-wrap">
         <div ref={ctaRef} className={`pl-cta${ctaVisible ? ' pl-visible' : ''}`}>
           <div className="pl-cta-text"><div className="pl-cta-eyebrow">Instagram Reklamları</div><h2 className="pl-cta-title">Kreatif Reklamlarla Öne Çıkın</h2><p className="pl-cta-sub">Instagram reklam hesabınızı ücretsiz analiz edelim, büyüme fırsatlarını birlikte keşfedelim.</p></div>
-          <Link to="/iletisim" className="pl-cta-btn">Ücretsiz Analiz<svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>
+          <Button to="/iletisim">Ücretsiz Analiz</Button>
         </div>
       </div>
     </>
