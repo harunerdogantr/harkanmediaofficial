@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -70,10 +71,15 @@ export default function DomainHosting() {
   return (
     <>
       <SEO
-        title="Domain & Hosting Yönetimi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Domain & Hosting Yönetimi | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="%99.9 uptime garantisi, SSD depolama ve 7/24 teknik destek ile domain ve hosting hizmetlerinizi profesyonel olarak yönetiyoruz."
         keywords="domain yönetimi, hosting hizmetleri, VPS, SSL sertifikası, web hosting, İstanbul"
         path="/domain-hosting"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Domain & Hosting' },
+        ]}
+        serviceName="Domain & Hosting"
       />
 
       <section className="pl-hero">
@@ -85,7 +91,7 @@ export default function DomainHosting() {
           <h1 className="pl-hero-title">Güvenli <span className="pl-accent">Dijital Altyapı</span></h1>
           <p className="pl-hero-sub">%99.9 uptime garantisi, SSD hız ve 7/24 teknik destek ile<br />dijital varlığınızı kesintisiz koruyoruz.</p>
           <div className="pl-breadcrumb">
-            <span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Domain & Hosting</span>
+            <Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Domain & Hosting</span>
           </div>
         </div>
       </section>

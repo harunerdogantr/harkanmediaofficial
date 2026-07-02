@@ -96,7 +96,7 @@ export default function Homepage() {
   return (
     <>
       <SEO
-        title="Harkan Media - Dijital Pazarlama ve Yazılım Danışmanlığı"
+        title="Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlığı"
         description="Harkan Media ile dijital dünyada öne çıkın. SEO, sosyal medya yönetimi, Google Ads, Facebook Ads ve daha fazlası için profesyonel dijital pazarlama hizmetleri."
         keywords="dijital pazarlama, SEO, sosyal medya, Google Ads, Facebook Ads, Instagram Ads, LinkedIn Ads, web analitik, mobil analitik, Harkan Media"
         path="/"

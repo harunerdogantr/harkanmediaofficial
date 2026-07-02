@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <>
       <SEO
-        title="404 — Sayfa Bulunamadı | Harkan Media"
+        title="404 | Sayfa Bulunamadı | Harkan Media"
         description="Aradığınız sayfa bulunamadı."
         path="/404"
         noindex

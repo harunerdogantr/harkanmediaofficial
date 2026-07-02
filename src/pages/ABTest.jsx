@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function ABTest() {
   return (
     <>
       <SEO
-        title="A/B Testi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="A/B Testi | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Veriye dayalı A/B testleriyle dönüşüm oranlarınızı artırın. İstatistiksel anlamlılık garantisiyle güvenilir test sonuçları, sürekli iyileştirme döngüsü."
         keywords="A/B testi, split test, dönüşüm optimizasyonu, CRO, landing page testi, İstanbul"
         path="/ab-testi"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'A/B Testi' },
+        ]}
+        serviceName="A/B Testi"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function ABTest() {
           <span className="pl-eyebrow">A/B Testi</span>
           <h1 className="pl-hero-title">Verilere Dayalı <span className="pl-accent">Kararlar</span> Alın</h1>
           <p className="pl-hero-sub">Tahmin değil, test. Her değişken için istatistiksel kanıt üretiyor,<br />dönüşüm oranlarınızı sistematik olarak artırıyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">A/B Testi</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">A/B Testi</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

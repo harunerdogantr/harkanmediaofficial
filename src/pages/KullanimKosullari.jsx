@@ -6,7 +6,7 @@ export default function KullanimKosullari() {
   return (
     <>
       <SEO
-        title="Kullanım Koşulları — Harkan Media"
+        title="Kullanım Koşulları | Harkan Media"
         description="Harkan Media kullanım koşulları. Web sitemizi ve hizmetlerimizi kullanırken geçerli olan şartlar hakkında bilgi edinin."
         path="/kullanim-kosullari"
       />

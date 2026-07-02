@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function SocialMediaAds() {
   return (
     <>
       <SEO
-        title="Sosyal Medya Reklamları - Harkan Media | Dijital Pazarlama"
+        title="Sosyal Medya Reklamları | Harkan Media | Dijital Pazarlama"
         description="Facebook, Instagram, LinkedIn ve TikTok dahil tüm sosyal medya platformlarında profesyonel reklam yönetimi. Multi-platform strateji ile erişiminizi genişletin."
         keywords="sosyal medya reklamları, Facebook Ads, Instagram Ads, TikTok reklamları, multi-platform reklam, İstanbul"
         path="/sosyal-medya-reklamlari"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Sosyal Medya Reklamları' },
+        ]}
+        serviceName="Sosyal Medya Reklamları"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function SocialMediaAds() {
           <span className="pl-eyebrow">Sosyal Medya Reklamları</span>
           <h1 className="pl-hero-title">Her Platformda <span className="pl-accent">Güçlü</span> Varlık</h1>
           <p className="pl-hero-sub">Facebook, Instagram, LinkedIn, TikTok ve daha fazlasında tek bir stratejiyle<br />hedef kitlenize en etkili şekilde ulaşıyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Sosyal Medya Reklamları</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Sosyal Medya Reklamları</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function GoogleAds() {
   return (
     <>
       <SEO
-        title="Google Ads Optimizasyonu - Harkan Media | Dijital Pazarlama"
+        title="Google Ads Optimizasyonu | Harkan Media | Dijital Pazarlama"
         description="Google Ads reklamlarınızı profesyonel olarak yönetiyoruz. Arama, görüntülü ve video reklamlarıyla hedef kitlenize ulaşın, ROI'nizi maksimize edin."
         keywords="Google Ads, Google reklamları, PPC, arama reklamları, görüntülü reklamlar, Google Ads optimizasyonu, İstanbul"
         path="/google-ads-optimizasyonu"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Google Ads' },
+        ]}
+        serviceName="Google Ads"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function GoogleAds() {
           <span className="pl-eyebrow">Google Ads</span>
           <h1 className="pl-hero-title">{"Google'da"} <span className="pl-accent">1. Sıraya</span> Çıkın</h1>
           <p className="pl-hero-sub">Doğru anahtar kelimeler, optimize teklif stratejileri ve ikna edici reklam metinleriyle<br />hedef kitlenize tam ihtiyaç duydukları anda ulaşıyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Google Ads</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Google Ads</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

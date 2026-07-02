@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import { useInView } from '../hooks/useInView';
@@ -28,10 +29,14 @@ export default function Calismalarimiz() {
   return (
     <>
       <SEO
-        title="Çalışmalarımız - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Çalışmalarımız | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Harkan Media'nın gerçekleştirdiği dijital pazarlama, SEO, reklam ve analitik projelerini inceleyin. Gerçek sonuçlar, ölçülmüş başarılar."
         keywords="çalışmalarımız, referanslar, portföy, dijital pazarlama projeleri, başarı hikayeleri, İstanbul"
         path="/calismalarimiz"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Çalışmalarımız' },
+        ]}
       />
 
       <section className="pl-hero">
@@ -40,7 +45,7 @@ export default function Calismalarimiz() {
           <span className="pl-eyebrow">Çalışmalarımız</span>
           <h1 className="pl-hero-title">Başarı <span className="pl-accent">Hikayelerimiz</span></h1>
           <p className="pl-hero-sub">Her proje bir problemi çözmek için başlar. İşte rakamlarla kanıtlanmış<br />dijital dönüşüm hikayelerimizden bir seçki.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Çalışmalarımız</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Çalışmalarımız</span></div>
         </div>
       </section>
 

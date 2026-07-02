@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -70,10 +71,15 @@ export default function Reporting() {
   return (
     <>
       <SEO
-        title="Raporlama - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Raporlama | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Gerçek zamanlı izleme, özelleştirilmiş KPI raporları ve detaylı analiz ile işletmenizin performansını net olarak görün. Harkan Media raporlama hizmetleri."
         keywords="dijital raporlama, KPI dashboard, performans raporu, veri görselleştirme, gerçek zamanlı analitik, İstanbul"
         path="/raporlama"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Raporlama' },
+        ]}
+        serviceName="Raporlama"
       />
 
       <section className="pl-hero">
@@ -85,7 +91,7 @@ export default function Reporting() {
           <h1 className="pl-hero-title">Verilerinizi <span className="pl-accent">Anlayın</span></h1>
           <p className="pl-hero-sub">Gerçek zamanlı dashboardlar ve özelleştirilmiş raporlarla<br />işletmenizin nabzını her an elinizin altında tutun.</p>
           <div className="pl-breadcrumb">
-            <span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Raporlama</span>
+            <Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Raporlama</span>
           </div>
         </div>
       </section>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function GoogleLocalSeo() {
   return (
     <>
       <SEO
-        title="Google Local SEO - Harkan Media | Dijital Pazarlama"
+        title="Google Local SEO | Harkan Media | Dijital Pazarlama"
         description="Google My Business optimizasyonu, yerel SEO ve itibar yönetimiyle bölgenizde 1. sıraya çıkın. Yakınımdaki aramalarda rakiplerinizin önüne geçin."
         keywords="Google Local SEO, yerel SEO, Google My Business, yerel arama optimizasyonu, itibar yönetimi, İstanbul"
         path="/google-local-seo"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Google Local SEO' },
+        ]}
+        serviceName="Google Local SEO"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function GoogleLocalSeo() {
           <span className="pl-eyebrow">Google Local SEO</span>
           <h1 className="pl-hero-title">Yerel Aramalarda <span className="pl-accent">1. Sıra</span></h1>
           <p className="pl-hero-sub">{"\"Yakınımdaki\""} aramalarında karşılarına ilk siz çıkın.<br />Google My Business ve yerel SEO ile bölgenizdeki müşterilere ulaşın.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Google Local SEO</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Google Local SEO</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

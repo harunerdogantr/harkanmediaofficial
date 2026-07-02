@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
@@ -161,9 +162,13 @@ export default function TeklifPage() {
   return (
     <>
       <SEO
-        title="Teklif İste - Harkan Media | Dijital Pazarlama ve Danışmanlık"
+        title="Teklif İste | Harkan Media | Dijital Pazarlama ve Danışmanlık"
         description="Harkan Media'dan ücretsiz teklif alın. Hizmet seçimi, bütçe aralığı ve iletişim bilgilerinizi paylaşın, 24 saat içinde dönelim."
         path="/teklif"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Teklif İste' },
+        ]}
       />
 
       {/* HERO */}
@@ -183,7 +188,7 @@ export default function TeklifPage() {
             bir strateji ile geri dönsün.
           </p>
           <div className="tp-breadcrumb">
-            <span>Harkan Medya</span>
+            <Link to="/">Harkan Medya</Link>
             <span className="tp-sep">/</span>
             <span className="tp-active">Teklif İste</span>
           </div>

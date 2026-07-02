@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function DataModeling() {
   return (
     <>
       <SEO
-        title="Veri Modelleme - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Veri Modelleme | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Veri ambarı tasarımı, analitik model geliştirme ve görselleştirme hizmetleriyle organizasyonunuzun veri olgunluğunu artırın. Veriden değer üretin."
         keywords="veri modelleme, data warehouse, ETL, analitik modeller, veri görselleştirme, Power BI, İstanbul"
         path="/veri-modelleme"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Veri Modelleme' },
+        ]}
+        serviceName="Veri Modelleme"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function DataModeling() {
           <span className="pl-eyebrow">Veri Modelleme</span>
           <h1 className="pl-hero-title">Verinin <span className="pl-accent">Gücünü</span> Keşfedin</h1>
           <p className="pl-hero-sub">Sağlam veri altyapısı, akıllı analitik modeller ve etkileyici görselleştirmelerle<br />organizasyonunuzu veriye dayalı bir geleceğe taşıyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Veri Modelleme</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Veri Modelleme</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

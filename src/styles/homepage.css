@@ -133,6 +133,7 @@
   align-items: center;
 }
 
+/* ── DEAD CSS: superseded by <Button> (src/components/ui/Button.jsx), 2026-07-02 ──
 .hp-btn-primary {
   display: inline-flex;
   align-items: center;
@@ -183,6 +184,7 @@
   color: var(--hp-red);
   background: rgba(255,59,29,.04);
 }
+── END DEAD CSS ── */
 
 /* DASHBOARD VISUAL */
 .hp-hero-visual {
@@ -414,6 +416,7 @@
   transition: opacity .6s ease, transform .6s ease;
 }
 
+/* ── DEAD CSS: superseded by <Card> (src/components/ui/Card.jsx), 2026-07-02 ──
 .hp-svc-card {
   background: #fff;
   border-radius: 16px;
@@ -479,6 +482,7 @@
   transition: gap .2s;
 }
 .hp-svc-card:hover .hp-svc-arrow { gap: 10px; }
+── END DEAD CSS ── */
 
 /* ─── NEDEN BİZ ──────────────────────────────────────── */
 .hp-why {
@@ -599,6 +603,7 @@
 .hp-cta-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--hp-red); margin-bottom: 10px; }
 .hp-cta-title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; color: #fff; margin: 0 0 10px; }
 .hp-cta-sub { font-size: .9rem; color: rgba(255,255,255,.55); margin: 0; max-width: 440px; }
+/* ── DEAD CSS: superseded by <Button variant="primary"> (src/components/ui/Button.jsx), 2026-07-02 ──
 .hp-cta-btn {
   display: inline-flex;
   align-items: center;
@@ -627,6 +632,7 @@
 }
 .hp-cta-btn:hover::after { transform: translateX(100%); }
 .hp-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,59,29,.45); }
+── END DEAD CSS ── */
 
 /* ─── NASIL ÇALIŞIRIZ ────────────────────────────────── */
 .hp-process {
@@ -903,5 +909,7 @@
 
 @media (max-width: 480px) {
   .hp-hero-actions { flex-direction: column; }
+  /* ── DEAD CSS: .hp-btn-primary/.hp-btn-ghost superseded by <Button>, 2026-07-02 ──
   .hp-btn-primary, .hp-btn-ghost { width: 100%; justify-content: center; }
+  ── END DEAD CSS ── */
 }

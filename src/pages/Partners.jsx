@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -32,10 +33,14 @@ export default function Partners() {
   return (
     <>
       <SEO
-        title="Partnerlerimiz - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Partnerlerimiz | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Harkan Media; Google Partner ve Facebook Business Partner statüleriyle müşterilerine en üst düzey dijital pazarlama hizmetleri sunmaktadır."
         keywords="Google Partner, Facebook Business Partner, Harkan Media partnerleri, dijital pazarlama, İstanbul"
         path="/partnerlerimiz"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Partnerlerimiz' },
+        ]}
       />
 
       {/* HERO */}
@@ -55,7 +60,7 @@ export default function Partners() {
             müşterilerimize en üst düzey hizmet sunuyoruz.
           </p>
           <div className="pl-breadcrumb">
-            <span>Harkan Medya</span>
+            <Link to="/">Harkan Medya</Link>
             <span className="pl-sep">/</span>
             <span className="pl-bc-active">Partnerlerimiz</span>
           </div>

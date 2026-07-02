@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -70,10 +71,15 @@ export default function SoftwareConsulting() {
   return (
     <>
       <SEO
-        title="Yazılım Danışmanlığı - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Yazılım Danışmanlığı | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Özel yazılım çözümleri, sistem entegrasyonu ve teknoloji danışmanlığı ile dijital dönüşümünüzü gerçekleştirin. Harkan Media uzman ekibiyle işletmenizi geleceğe taşıyın."
         keywords="yazılım danışmanlığı, dijital dönüşüm, özel yazılım, sistem entegrasyonu, bulut çözümleri, İstanbul"
         path="/yazilim-danismanligi"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Yazılım Danışmanlığı' },
+        ]}
+        serviceName="Yazılım Danışmanlığı"
       />
 
       <section className="pl-hero">
@@ -85,7 +91,7 @@ export default function SoftwareConsulting() {
           <h1 className="pl-hero-title">Dijital <span className="pl-accent">Dönüşümünüz</span> Başlıyor</h1>
           <p className="pl-hero-sub">Özel yazılım çözümleri, sistem entegrasyonu ve teknoloji danışmanlığıyla<br />işletmenizi geleceğe hazırlıyoruz.</p>
           <div className="pl-breadcrumb">
-            <span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Yazılım Danışmanlığı</span>
+            <Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Yazılım Danışmanlığı</span>
           </div>
         </div>
       </section>

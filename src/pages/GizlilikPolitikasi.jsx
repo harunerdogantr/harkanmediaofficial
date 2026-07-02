@@ -6,7 +6,7 @@ export default function GizlilikPolitikasi() {
   return (
     <>
       <SEO
-        title="Gizlilik Politikası — Harkan Media"
+        title="Gizlilik Politikası | Harkan Media"
         description="Harkan Media gizlilik politikası. Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin."
         path="/gizlilik-politikasi"
       />

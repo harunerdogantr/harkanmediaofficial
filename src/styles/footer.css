@@ -39,6 +39,7 @@
   align-items: center;
   gap: 12px;
 }
+/* ── DEAD CSS: superseded by <Button variant="primary"> (src/components/ui/Button.jsx), 2026-07-02 ──
 .ft-top-btn {
   display: inline-flex;
   align-items: center;
@@ -65,6 +66,7 @@
 }
 .ft-top-btn:hover::after { transform: translateX(100%); }
 .ft-top-btn:hover { background: #e5310f; transform: translateY(-1px); }
+── END DEAD CSS ── */
 .ft-top-link {
   display: inline-flex;
   align-items: center;
@@ -258,6 +260,16 @@
 @media (max-width: 640px) {
   .ft-top-inner { flex-direction: column; align-items: center; text-align: center; }
   .ft-top-actions { justify-content: center; }
+  .ft-top-actions .ui-btn {
+    height: 44px;
+    padding: 0 18px;
+    font-size: 13px;
+    gap: 6px;
+  }
+  .ft-top-actions .ft-top-link {
+    padding: 9px 14px;
+    font-size: .78rem;
+  }
   .ft-main { grid-template-columns: 1fr; gap: 28px; padding: 40px 20px; }
   .ft-top { padding: 28px 20px; }
   .ft-bottom { padding: 16px 20px; }
@@ -270,8 +282,11 @@
   .ft-col { align-items: center; text-align: center; }
   .ft-col-title { text-align: center; }
   .ft-nav { align-items: center; }
-  .ft-contact-items { align-items: center; }
+  .ft-contact-items { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 24px; width: 100%; }
   .ft-contact-item { justify-content: center; }
+  .ft-contact-item:nth-child(1) { order: 1; }
+  .ft-contact-item:nth-child(3) { order: 2; }
+  .ft-contact-item:nth-child(2) { order: 3; flex-basis: 100%; }
   .ft-link::before { display: none; }
   .ft-link:hover { padding-left: 0; }
 }

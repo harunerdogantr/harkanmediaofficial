@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function InstagramAds() {
   return (
     <>
       <SEO
-        title="Instagram Reklamları - Harkan Media | Dijital Pazarlama"
+        title="Instagram Reklamları | Harkan Media | Dijital Pazarlama"
         description="Instagram Feed, Story ve Reels reklamlarıyla hedef kitlenize ulaşın. Profesyonel kreatif üretimi ve dönüşüm odaklı kampanya yönetimiyle markanızı büyütün."
         keywords="Instagram reklamları, Instagram Ads, Story reklamı, Reels reklam, Meta reklamları, İstanbul"
         path="/instagram-reklam-optimizasyonu"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Instagram Reklamları' },
+        ]}
+        serviceName="Instagram Reklamları"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function InstagramAds() {
           <span className="pl-eyebrow">Instagram Reklamları</span>
           <h1 className="pl-hero-title">{"Instagram'da"} <span className="pl-accent">Fark Yaratın</span></h1>
           <p className="pl-hero-sub">{"Feed'den Reels'e, Story'den Keşfet'e her formatta hedef kitlenizin dikkatini çekiyor,"}<br />etkileşimi satışa dönüştürüyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Instagram Reklamları</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Instagram Reklamları</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

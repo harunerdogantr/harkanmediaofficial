@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function MobilAnalitik() {
   return (
     <>
       <SEO
-        title="Mobil Analitiği - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Mobil Analitiği | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Firebase, Mixpanel ve Amplitude entegrasyonu ile mobil uygulamanızı veriye dayalı yönetin. Kullanıcı takibi, funnel analizi ve retention stratejileri."
         keywords="mobil analitik, Firebase Analytics, Mixpanel, uygulama analizi, retention analizi, funnel optimizasyonu, İstanbul"
         path="/mobil-analitik"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Mobil Analitiği' },
+        ]}
+        serviceName="Mobil Analitiği"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function MobilAnalitik() {
           <span className="pl-eyebrow">Mobil Analitiği</span>
           <h1 className="pl-hero-title">Uygulamanızı <span className="pl-accent">Veriye Dayandırın</span></h1>
           <p className="pl-hero-sub">Kullanıcı davranışı, funnel analizi ve retention metrikleriyle uygulamanızın<br />gerçek performansını görün ve büyümeyi hızlandırın.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Mobil Analitiği</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Mobil Analitiği</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

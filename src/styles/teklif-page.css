@@ -90,6 +90,8 @@
   font-size: .8rem;
   color: #aaa;
 }
+.tp-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.tp-breadcrumb a:hover { color: #FF3B1D; }
 .tp-sep { opacity: .5; }
 .tp-active { color: #FF3B1D; font-weight: 600; }
 
@@ -294,6 +296,7 @@
 
 /* Navigation buttons */
 .tp-form-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; }
+/* ── DEAD CSS: superseded by <Button> (src/components/ui/Button.jsx), 2026-07-02 ──
 .tp-btn-back {
   display: inline-flex;
   align-items: center;
@@ -336,6 +339,7 @@
 .tp-btn-next:hover::after { transform: translateX(100%); }
 .tp-btn-next:hover { background: #e5310f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,59,29,.38); }
 .tp-btn-next:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+── END DEAD CSS ── */
 
 /* Spinner */
 .tp-spinner {

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function SearchOptimization() {
   return (
     <>
       <SEO
-        title="Arama Motoru Optimizasyonu (SEO) - Harkan Media | Dijital Pazarlama"
+        title="Arama Motoru Optimizasyonu (SEO) | Harkan Media | Dijital Pazarlama"
         description="Teknik SEO, içerik stratejisi ve link building ile arama motorlarında üst sıralara çıkın. Organik trafiğinizi artıran kanıtlanmış SEO hizmetleri."
         keywords="SEO, arama motoru optimizasyonu, teknik SEO, içerik SEO, link building, Google sıralama, İstanbul"
         path="/arama-optimizasyonu"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Arama Optimizasyonu' },
+        ]}
+        serviceName="Arama Motoru Optimizasyonu (SEO)"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function SearchOptimization() {
           <span className="pl-eyebrow">SEO / Arama Optimizasyonu</span>
           <h1 className="pl-hero-title">Arama Motorlarında <span className="pl-accent">Öne Çıkın</span></h1>
           <p className="pl-hero-sub">Teknik altyapı, içerik stratejisi ve otorite inşasıyla Google aramalarında<br />hedef kitlenizin karşısına ilk sırada çıkıyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Arama Optimizasyonu</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Arama Optimizasyonu</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

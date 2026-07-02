@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function FacebookAds() {
   return (
     <>
       <SEO
-        title="Facebook Reklamları - Harkan Media | Dijital Pazarlama"
+        title="Facebook Reklamları | Harkan Media | Dijital Pazarlama"
         description="Facebook ve Instagram reklamlarınızı profesyonel olarak yönetiyoruz. Hedef kitle analizi, dönüşüm optimizasyonu ve ROI odaklı kampanyalarla markanızı büyütün."
         keywords="Facebook reklamları, Facebook Ads, Meta reklam, sosyal medya reklamı, dönüşüm optimizasyonu, İstanbul"
         path="/facebook-reklam-optimizasyonu"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Facebook Reklamları' },
+        ]}
+        serviceName="Facebook Reklamları"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function FacebookAds() {
           <span className="pl-eyebrow">Facebook Reklamları</span>
           <h1 className="pl-hero-title">Facebook'ta Markanızı <span className="pl-accent">Büyütün</span></h1>
           <p className="pl-hero-sub">Hedef kitlenize tam isabet eden reklamlarla dönüşüm oranlarınızı artırıyor,<br />reklam bütçenizden maksimum verim almanızı sağlıyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Facebook Reklamları</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Facebook Reklamları</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

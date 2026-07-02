@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -70,10 +71,15 @@ export default function DataAnalysis() {
   return (
     <>
       <SEO
-        title="Veri Analizi - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Veri Analizi | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="İleri düzey veri analizi ile işletmenizin performansını ölçün, tahminsel analizle geleceği öngörün. Harkan Media uzman ekibi ile veri odaklı kararlar alın."
         keywords="veri analizi, tahminsel analiz, iş analitiği, makine öğrenmesi, KPI, İstanbul"
         path="/veri-analizi"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Veri Analizi' },
+        ]}
+        serviceName="Veri Analizi"
       />
 
       <section className="pl-hero">
@@ -85,7 +91,7 @@ export default function DataAnalysis() {
           <h1 className="pl-hero-title">Veriden <span className="pl-accent">Değer Üretin</span></h1>
           <p className="pl-hero-sub">Karmaşık veri setlerinizi anlamlı içgörülere dönüştürüyor,<br />veri odaklı kararlarla işletmenizi büyütmenize yardımcı oluyoruz.</p>
           <div className="pl-breadcrumb">
-            <span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Veri Analizi</span>
+            <Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Veri Analizi</span>
           </div>
         </div>
       </section>

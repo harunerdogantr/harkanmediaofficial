@@ -6,7 +6,7 @@ export default function CerezPolitikasi() {
   return (
     <>
       <SEO
-        title="Çerez Politikası — Harkan Media"
+        title="Çerez Politikası | Harkan Media"
         description="Harkan Media çerez politikası. Web sitemizde kullanılan çerezler ve yönetim seçenekleri hakkında bilgi edinin."
         path="/cerez-politikasi"
       />

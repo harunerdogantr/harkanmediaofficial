@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function DijitalPazarlama() {
   return (
     <>
       <SEO
-        title="Dijital Pazarlama - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Dijital Pazarlama | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="SEO, sosyal medya, içerik ve ücretli reklam kanallarını entegre eden 360° dijital pazarlama stratejisiyle markanızı büyütün. Veriye dayalı, ölçümlenebilir sonuçlar."
         keywords="dijital pazarlama, 360 dijital strateji, içerik pazarlama, inbound marketing, performans pazarlama, İstanbul"
         path="/dijital-pazarlama"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Dijital Pazarlama' },
+        ]}
+        serviceName="Dijital Pazarlama"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function DijitalPazarlama() {
           <span className="pl-eyebrow">Dijital Pazarlama</span>
           <h1 className="pl-hero-title">Markanızı <span className="pl-accent">360°</span> Büyütün</h1>
           <p className="pl-hero-sub">Tüm dijital kanalları koordineli yönetiyor, her yatırımın karşılığını<br />ölçümlüyor ve markanızı sürdürülebilir biçimde büyütüyoruz.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Dijital Pazarlama</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Dijital Pazarlama</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

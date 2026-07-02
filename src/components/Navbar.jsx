@@ -14,6 +14,90 @@ const SendIcon = () => (
   </svg>
 );
 
+// Single source of truth for the dropdown nav — desktop renders each group
+// with its own heading/column, mobile flattens every group's links into one
+// flat list under the item's heading. Editing a link only ever means editing
+// it here once.
+const NAV_ITEMS = [
+  {
+    label: 'Bizi Tanıyın',
+    mobileSub: false,
+    groups: [
+      {
+        links: [
+          { label: 'Hakkımızda', to: '/hakkimizda' },
+          { label: 'Partnerlerimiz', to: '/partnerlerimiz' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Neler Yapıyoruz',
+    dropMinWidth: 220,
+    groups: [
+      {
+        head: 'Optimizasyon',
+        links: [
+          { label: 'Facebook Reklamları', to: '/facebook-reklam-optimizasyonu' },
+          { label: 'Google Ads', to: '/google-ads-optimizasyonu' },
+        ],
+      },
+      {
+        head: 'Veri Analizi',
+        links: [
+          { label: 'Veri Analizi', to: '/veri-analizi' },
+          { label: 'A/B Testi', to: '/ab-testi' },
+          { label: 'Veri Modelleme', to: '/veri-modelleme' },
+        ],
+      },
+      {
+        head: 'Diğer',
+        links: [
+          { label: 'Domain & Hosting', to: '/domain-hosting' },
+          { label: 'Yazılım Danışmanlığı', to: '/yazilim-danismanligi' },
+          { label: 'Raporlama', to: '/raporlama' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Hizmetlerimiz',
+    dropWide: true,
+    groups: [
+      {
+        head: 'Arama & SEO',
+        links: [
+          { label: 'Arama Motoru Optimizasyonu', to: '/arama-optimizasyonu' },
+          { label: 'Google Local SEO', to: '/google-local-seo' },
+          { label: 'İYS Çözümleri', to: '/iys-cozumleri' },
+          { label: 'Dijital Pazarlama', to: '/dijital-pazarlama' },
+        ],
+      },
+      {
+        head: 'Reklamlar',
+        links: [
+          { label: 'Sosyal Medya Reklamları', to: '/sosyal-medya-reklamlari' },
+          { label: 'Facebook Reklamları', to: '/facebook-reklam-optimizasyonu' },
+          { label: 'Instagram Reklamları', to: '/instagram-reklam-optimizasyonu' },
+          { label: 'LinkedIn Reklamları', to: '/linkedin-reklam-optimizasyonu' },
+        ],
+      },
+      {
+        head: 'Analitik',
+        links: [
+          { label: 'Web Analitiği', to: '/web-analitik' },
+          { label: 'Mobil Analitiği', to: '/mobil-analitik' },
+        ],
+      },
+    ],
+  },
+];
+
+const NAV_PLAIN_LINKS = [
+  { label: 'Çalışmalarımız', to: '/calismalarimiz' },
+  { label: 'İletişim', to: '/iletisim' },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
@@ -45,68 +129,30 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="nb-links">
-
-          {/* Bizi Tanıyın */}
-          <div className="nb-item nb-has-drop">
-            <span className="nb-label">Bizi Tanıyın <ChevronIcon /></span>
-            <div className="nb-drop">
-              <Link to="/hakkimizda"    className="nb-drop-link">Hakkımızda</Link>
-              <Link to="/partnerlerimiz" className="nb-drop-link">Partnerlerimiz</Link>
-            </div>
-          </div>
-
-          {/* Neler Yapıyoruz */}
-          <div className="nb-item nb-has-drop">
-            <span className="nb-label">Neler Yapıyoruz <ChevronIcon /></span>
-            <div className="nb-drop" style={{ minWidth: 220 }}>
-              <div className="nb-drop-group">
-                <div className="nb-drop-head">Optimizasyon</div>
-                <Link to="/facebook-reklam-optimizasyonu" className="nb-drop-link">Facebook Reklamları</Link>
-                <Link to="/google-ads-optimizasyonu"      className="nb-drop-link">Google Ads</Link>
-              </div>
-              <div className="nb-drop-group">
-                <div className="nb-drop-head">Veri Analizi</div>
-                <Link to="/veri-analizi"   className="nb-drop-link">Veri Analizi</Link>
-                <Link to="/ab-testi"       className="nb-drop-link">A/B Testi</Link>
-                <Link to="/veri-modelleme" className="nb-drop-link">Veri Modelleme</Link>
-              </div>
-              <div className="nb-drop-group">
-                <div className="nb-drop-head">Diğer</div>
-                <Link to="/domain-hosting"      className="nb-drop-link">Domain & Hosting</Link>
-                <Link to="/yazilim-danismanligi" className="nb-drop-link">Yazılım Danışmanlığı</Link>
-                <Link to="/raporlama"            className="nb-drop-link">Raporlama</Link>
+          {NAV_ITEMS.map(item => (
+            <div key={item.label} className="nb-item nb-has-drop">
+              <span className="nb-label">{item.label} <ChevronIcon /></span>
+              <div
+                className={`nb-drop${item.dropWide ? ' nb-drop-wide' : ''}`}
+                style={item.dropMinWidth ? { minWidth: item.dropMinWidth } : undefined}
+              >
+                {item.groups.map((group, gi) => (
+                  <div key={gi} className={item.dropWide ? 'nb-drop-col' : 'nb-drop-group'}>
+                    {group.head && (
+                      <div className={item.dropWide ? 'nb-drop-col-head' : 'nb-drop-head'}>{group.head}</div>
+                    )}
+                    {group.links.map(l => (
+                      <Link key={l.to} to={l.to} className="nb-drop-link">{l.label}</Link>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          ))}
 
-          {/* Hizmetlerimiz */}
-          <div className="nb-item nb-has-drop">
-            <span className="nb-label">Hizmetlerimiz <ChevronIcon /></span>
-            <div className="nb-drop nb-drop-wide">
-              <div className="nb-drop-col">
-                <div className="nb-drop-col-head">Arama & SEO</div>
-                <Link to="/arama-optimizasyonu" className="nb-drop-link">Arama Motoru Optimizasyonu</Link>
-                <Link to="/google-local-seo"    className="nb-drop-link">Google Local SEO</Link>
-                <Link to="/iys-cozumleri"       className="nb-drop-link">İYS Çözümleri</Link>
-                <Link to="/dijital-pazarlama"   className="nb-drop-link">Dijital Pazarlama</Link>
-              </div>
-              <div className="nb-drop-col">
-                <div className="nb-drop-col-head">Reklamlar</div>
-                <Link to="/sosyal-medya-reklamlari"       className="nb-drop-link">Sosyal Medya Reklamları</Link>
-                <Link to="/facebook-reklam-optimizasyonu" className="nb-drop-link">Facebook Reklamları</Link>
-                <Link to="/instagram-reklam-optimizasyonu" className="nb-drop-link">Instagram Reklamları</Link>
-                <Link to="/linkedin-reklam-optimizasyonu" className="nb-drop-link">LinkedIn Reklamları</Link>
-              </div>
-              <div className="nb-drop-col">
-                <div className="nb-drop-col-head">Analitik</div>
-                <Link to="/web-analitik"   className="nb-drop-link">Web Analitiği</Link>
-                <Link to="/mobil-analitik" className="nb-drop-link">Mobil Analitiği</Link>
-              </div>
-            </div>
-          </div>
-
-          <Link to="/calismalarimiz" className="nb-plain">Çalışmalarımız</Link>
-          <Link to="/iletisim"       className="nb-plain">İletişim</Link>
+          {NAV_PLAIN_LINKS.map(l => (
+            <Link key={l.to} to={l.to} className="nb-plain">{l.label}</Link>
+          ))}
         </div>
 
         {/* CTA */}
@@ -128,47 +174,31 @@ export default function Navbar() {
 
     {/* Mobile menu — sibling to header to avoid backdrop-filter stacking context */}
     <div className={`nb-mobile${menuOpen ? ' nb-mobile-open' : ''}`}>
-        <div className="nb-mob-group">
-          <div className="nb-mob-head">Bizi Tanıyın</div>
-          <Link to="/hakkimizda"     className="nb-mob-link">Hakkımızda</Link>
-          <Link to="/partnerlerimiz" className="nb-mob-link">Partnerlerimiz</Link>
+      {NAV_ITEMS.map(item => (
+        <div key={item.label} className="nb-mob-group">
+          <div className="nb-mob-head">{item.label}</div>
+          {item.groups.flatMap(g => g.links).map(l => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className={`nb-mob-link${item.mobileSub === false ? '' : ' nb-mob-link-sub'}`}
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
+      ))}
 
-        <div className="nb-mob-group">
-          <div className="nb-mob-head">Neler Yapıyoruz</div>
-          <Link to="/facebook-reklam-optimizasyonu" className="nb-mob-link nb-mob-link-sub">Facebook Reklamları</Link>
-          <Link to="/google-ads-optimizasyonu"      className="nb-mob-link nb-mob-link-sub">Google Ads</Link>
-          <Link to="/veri-analizi"                  className="nb-mob-link nb-mob-link-sub">Veri Analizi</Link>
-          <Link to="/ab-testi"                      className="nb-mob-link nb-mob-link-sub">A/B Testi</Link>
-          <Link to="/veri-modelleme"                className="nb-mob-link nb-mob-link-sub">Veri Modelleme</Link>
-          <Link to="/domain-hosting"                className="nb-mob-link nb-mob-link-sub">Domain & Hosting</Link>
-          <Link to="/yazilim-danismanligi"           className="nb-mob-link nb-mob-link-sub">Yazılım Danışmanlığı</Link>
-          <Link to="/raporlama"                     className="nb-mob-link nb-mob-link-sub">Raporlama</Link>
-        </div>
-
-        <div className="nb-mob-group">
-          <div className="nb-mob-head">Hizmetlerimiz</div>
-          <Link to="/arama-optimizasyonu"           className="nb-mob-link nb-mob-link-sub">SEO / Arama Optimizasyonu</Link>
-          <Link to="/google-local-seo"              className="nb-mob-link nb-mob-link-sub">Google Local SEO</Link>
-          <Link to="/sosyal-medya-reklamlari"       className="nb-mob-link nb-mob-link-sub">Sosyal Medya Reklamları</Link>
-          <Link to="/facebook-reklam-optimizasyonu" className="nb-mob-link nb-mob-link-sub">Facebook Reklamları</Link>
-          <Link to="/instagram-reklam-optimizasyonu" className="nb-mob-link nb-mob-link-sub">Instagram Reklamları</Link>
-          <Link to="/linkedin-reklam-optimizasyonu" className="nb-mob-link nb-mob-link-sub">LinkedIn Reklamları</Link>
-          <Link to="/dijital-pazarlama"             className="nb-mob-link nb-mob-link-sub">Dijital Pazarlama</Link>
-          <Link to="/iys-cozumleri"                 className="nb-mob-link nb-mob-link-sub">İYS Çözümleri</Link>
-          <Link to="/web-analitik"                  className="nb-mob-link nb-mob-link-sub">Web Analitiği</Link>
-          <Link to="/mobil-analitik"                className="nb-mob-link nb-mob-link-sub">Mobil Analitiği</Link>
-        </div>
-
-        <div className="nb-mob-group">
-          <Link to="/calismalarimiz" className="nb-mob-link">Çalışmalarımız</Link>
-          <Link to="/iletisim"       className="nb-mob-link">İletişim</Link>
-        </div>
-
-        <Link to="/teklif" className="nb-mob-cta">
-          <SendIcon /> TEKLİF İSTE
-        </Link>
+      <div className="nb-mob-group">
+        {NAV_PLAIN_LINKS.map(l => (
+          <Link key={l.to} to={l.to} className="nb-mob-link">{l.label}</Link>
+        ))}
       </div>
+
+      <Link to="/teklif" className="nb-mob-cta">
+        <SendIcon /> TEKLİF İSTE
+      </Link>
+    </div>
     </>
   );
 }

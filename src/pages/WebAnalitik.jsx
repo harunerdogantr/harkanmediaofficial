@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function WebAnalitik() {
   return (
     <>
       <SEO
-        title="Web Analitiği - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Web Analitiği | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="GA4 kurulum, kullanıcı davranış analizi ve dönüşüm takibiyle web sitenizin performansını derinlemesine anlayın. Veri odaklı büyüme için web analitiği hizmetleri."
         keywords="web analitiği, Google Analytics 4, GA4, kullanıcı davranışı, dönüşüm takibi, GTM, İstanbul"
         path="/web-analitik"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Web Analitiği' },
+        ]}
+        serviceName="Web Analitiği"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function WebAnalitik() {
           <span className="pl-eyebrow">Web Analitiği</span>
           <h1 className="pl-hero-title">Sitenizi <span className="pl-accent">İçten İçe</span> Anlayın</h1>
           <p className="pl-hero-sub">GA4, GTM ve kullanıcı davranış araçlarıyla sitenizde neler olduğunu tam olarak görün,<br />veriyi aksiyona dönüştürün.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">Web Analitiği</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">Web Analitiği</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
@@ -116,10 +117,14 @@ export default function ContactPage() {
   return (
     <>
       <SEO
-        title="İletişim - Harkan Media | Dijital Pazarlama ve Danışmanlık"
+        title="İletişim | Harkan Media | Dijital Pazarlama ve Danışmanlık"
         description="Harkan Media ile iletişime geçin. Dijital pazarlama, SEO, Google Ads ve yazılım danışmanlığı hizmetlerimiz hakkında bilgi almak için bize ulaşın."
         keywords="iletişim, Harkan Media, dijital pazarlama, SEO, Google Ads, danışmanlık"
         path="/iletisim"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'İletişim' },
+        ]}
       />
 
       {/* ── PAGE HEADER ── */}
@@ -139,7 +144,7 @@ export default function ContactPage() {
             Sorularınız ve projeleriniz için bize ulaşın.
           </p>
           <div className="cp-breadcrumb">
-            <span>Harkan Medya</span>
+            <Link to="/">Harkan Medya</Link>
             <span className="cp-sep">/</span>
             <span className="cp-active">İletişim</span>
           </div>

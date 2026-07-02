@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from './SEO';
 import Button from './ui/Button';
 import Card from './ui/Card';
@@ -43,10 +44,14 @@ export default function About() {
   return (
     <>
       <SEO
-        title="Hakkımızda - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="Hakkımızda | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="Harkan Media olarak 10 yılı aşkın deneyimimizle dijital pazarlama, yazılım danışmanlığı ve veri analitiği alanlarında işletmenizi bir adım öne taşıyoruz."
         keywords="Harkan Media, hakkımızda, dijital pazarlama ajansı, yazılım danışmanlık, İstanbul"
         path="/hakkimizda"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'Hakkımızda' },
+        ]}
       />
 
       {/* HERO */}
@@ -66,7 +71,7 @@ export default function About() {
             büyümesine on yılı aşkın deneyimimizle eşlik ediyoruz.
           </p>
           <div className="pl-breadcrumb">
-            <span>Harkan Medya</span>
+            <Link to="/">Harkan Medya</Link>
             <span className="pl-sep">/</span>
             <span className="pl-bc-active">Hakkımızda</span>
           </div>

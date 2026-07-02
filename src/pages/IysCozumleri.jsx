@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function IysCozumleri() {
   return (
     <>
       <SEO
-        title="İYS Çözümleri - Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
+        title="İYS Çözümleri | Harkan Media | Dijital Pazarlama ve Yazılım Danışmanlık"
         description="KVKK ve İYS uyumlu izin yönetimi, CRM entegrasyonu ve uyumluluk raporlamasıyla yasal pazarlama altyapınızı güvence altına alın."
         keywords="İYS çözümleri, ileti yönetim sistemi, KVKK uyum, izin yönetimi, SMS izni, e-posta izni, İstanbul"
         path="/iys-cozumleri"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'İYS Çözümleri' },
+        ]}
+        serviceName="İYS Çözümleri"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function IysCozumleri() {
           <span className="pl-eyebrow">İYS Çözümleri</span>
           <h1 className="pl-hero-title">İzinli Pazarlamada <span className="pl-accent">Güvenli</span> Çözümler</h1>
           <p className="pl-hero-sub">KVKK ve İYS mevzuatına tam uyum, sorunsuz sistem entegrasyonu ve<br />gerçek zamanlı uyumluluk izlemeyle yasal risklerinizi sıfıra indirin.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">İYS Çözümleri</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">İYS Çözümleri</span></div>
         </div>
       </section>
       <section className="pl-cards-section">

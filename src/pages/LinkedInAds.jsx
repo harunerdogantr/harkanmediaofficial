@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -45,10 +46,15 @@ export default function LinkedInAds() {
   return (
     <>
       <SEO
-        title="LinkedIn Reklamları - Harkan Media | Dijital Pazarlama"
+        title="LinkedIn Reklamları | Harkan Media | Dijital Pazarlama"
         description="LinkedIn reklamlarıyla B2B hedef kitlenize ulaşın. Karar vericilere yönelik Sponsored Content, Lead Gen Formları ve Message Ads ile kaliteli lead toplayın."
         keywords="LinkedIn reklamları, LinkedIn Ads, B2B pazarlama, Lead Gen Formları, Sponsored Content, İstanbul"
         path="/linkedin-reklam-optimizasyonu"
+        breadcrumbs={[
+          { name: 'Harkan Medya', path: '/' },
+          { name: 'LinkedIn Reklamları' },
+        ]}
+        serviceName="LinkedIn Reklamları"
       />
       <section className="pl-hero">
         <div className="pl-hero-bg" aria-hidden="true"><span className="pl-blob pl-blob-1" /><span className="pl-blob pl-blob-2" /><span className="pl-grid" /></div>
@@ -56,7 +62,7 @@ export default function LinkedInAds() {
           <span className="pl-eyebrow">LinkedIn Reklamları</span>
           <h1 className="pl-hero-title">B2B&apos;de <span className="pl-accent">Lider</span> Olun</h1>
           <p className="pl-hero-sub">Karar vericilere, yöneticilere ve profesyonellere doğrudan ulaşın.<br />{"LinkedIn'in"} güçlü hedefleme altyapısıyla B2B satışlarınızı artırın.</p>
-          <div className="pl-breadcrumb"><span>Harkan Medya</span><span className="pl-sep">/</span><span className="pl-bc-active">LinkedIn Reklamları</span></div>
+          <div className="pl-breadcrumb"><Link to="/">Harkan Medya</Link><span className="pl-sep">/</span><span className="pl-bc-active">LinkedIn Reklamları</span></div>
         </div>
       </section>
       <section className="pl-cards-section">
